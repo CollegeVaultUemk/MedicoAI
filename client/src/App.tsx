@@ -6,6 +6,8 @@ import Home from "./components/func-components/Home";
 import Medicines from "./components/func-components/Medicines";
 import Map from "./components/Map/Map";
 import Dashboard from "./components/Dashboard/Dashboard";
+import GettingStarted from "./components/Dashboard/GettingStarted";
+import NewAIChat from "./components/Dashboard/AIChat/NewAIChat";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +28,18 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: "/dashboard/*",
     Component: Dashboard,
+    children: [
+      {
+        index: true,
+        Component: GettingStarted,
+      },
+      {
+        path: "new-ai-chat",
+        Component: NewAIChat,
+      },
+    ],
   },
 ]);
 
