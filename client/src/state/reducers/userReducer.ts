@@ -23,7 +23,7 @@ interface SerializedError {
 
 interface UserState {
   loading?: boolean;
-  user?: User | null;
+  user?: any;
   appErr?: string | undefined;
   serverErr?: string | undefined;
 }

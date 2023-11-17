@@ -1,18 +1,43 @@
 import MessageBox from "./MessageBox";
+import { useAppSelector } from "@/state/hooks";
+import { selectAiChat } from "@/state/reducers/aichatReducer";
+import { useEffect, useState } from "react";
 
-const ChatContent = () => {
+interface ChatContentProps {
+  userInput: string;
+}
+
+interface ChatType {
+  question: string;
+  answer: string;
+}
+
+const ChatContent = ({ userInput }: ChatContentProps) => {
+  const aiChats = useAppSelector(selectAiChat);
+  const { loading, aiChat, serverErr, appErr } = aiChats;
+  const [chatArray, setChatArray] = useState<ChatType[]>([
+    { question: userInput, answer: "pending..." },
+  ]);
+
+  useEffect(() => {
+    if (aiChat) {
+      setChatArray(aiChat.data.chat);
+    }
+  }, [aiChat]);
+
+  console.log(aiChat, serverErr, appErr);
   return (
-    <div className="px-15 flex flex-col gap-10">
-      <MessageBox messageType="user">
-        This is a test message. So tell me how much niggas cost now?
-      </MessageBox>
-      <MessageBox messageType="ai">
-        This is a test answer. Unfortunately em niggas are free nowadays.
-        Absolute state. Lorem ipsum dolor, sit amet consectetur adipisicing
-        elit. Recusandae distinctio labore, nemo ab voluptate eaque! Repellat
-        doloribus eveniet cupiditate molestiae autem unde provident consequuntur
-        corporis. Optio nostrum velit debitis repudiandae!
-      </MessageBox>
+    <div className="px-15 flex flex-col gap-10 overflow-y-scroll">
+      {chatArray.map((chat) => (
+        <>
+          <MessageBox messageType="user">{chat.question}</MessageBox>
+          {loading ? (
+            <p>Loading response....</p>
+          ) : (
+            <MessageBox messageType="ai">{chat.answer}</MessageBox>
+          )}
+        </>
+      ))}
     </div>
   );
 };

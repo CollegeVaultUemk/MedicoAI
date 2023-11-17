@@ -1,12 +1,15 @@
 import ChatHeader from "./ChatHeader";
 import ChatContent from "./ChatContent";
 
-const ChatSection = () => {
+interface ChatSectionProps {
+  userInput: string;
+}
+
+const ChatSection = ({ userInput }: ChatSectionProps) => {
   return (
     <>
-      <div className="py-14 overflow-y-scroll">
-        <ChatHeader />
-        <ChatContent />
+      <div className="py-14">
+        {userInput ? <ChatContent userInput={userInput} /> : <ChatHeader />}
       </div>
     </>
   );

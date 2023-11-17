@@ -1,13 +1,22 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useAppDispatch } from "@/state/hooks";
+import { NewAiChatAction } from "@/state/reducers/aichatReducer";
 
-const UserInput = () => {
-  const [userInput, setUserInput] = useState<string>("");
+interface UserInputProps {
+  setUserInput: (value: string) => void;
+}
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+const UserInput = ({ setUserInput }: UserInputProps) => {
+  const dispatch = useAppDispatch();
+  const [input, setInput] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setUserInput("");
+    setUserInput(input);
+    await dispatch(NewAiChatAction(input));
+    setInput("");
   };
 
   return (
@@ -18,8 +27,8 @@ const UserInput = () => {
       <Input
         className="shadow-md h-12 bg-slate-100 dark:bg-slate-600 border-gray-300 dark:border-gray-600 px-6 text-lg text-gray-900 dark:text-gray-100"
         placeholder="Start typing..."
-        value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
       />
       <Button
         variant="outline"
