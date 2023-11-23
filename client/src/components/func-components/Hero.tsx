@@ -19,13 +19,21 @@ const Hero = () => {
                         "url('https://assets.website-files.com/64e30fb523cefa79f1c3f08f/64e34703019f31054e880eb2_underline.svg')",
                     }}
                   >
-                    Medlify
+                    MedicoAI
                   </span>
                 </h1>
               </div>
               <div className="mb-6 sm:mb-10">
                 <p className="text-xl font-semibold text-[#575757]">
-                  Resonating HealthCare Solutions
+                  Resonating HealthCare Solutions 🩺 <br />
+                  <br />
+                  Imagine having a healthcare assistant available 24/7, ready to
+                  answer your health queries, provide timely reminders, and
+                  offer personalized insights into your well-being. Our AI
+                  chat-driven healthcare app is designed to do just that and
+                  more! Say goodbye to waiting rooms and hello to instant,
+                  intelligent conversations that put your health in the
+                  spotlight.
                 </p>
               </div>
               <div className="flex items-center justify-start gap-4 flex-wrap mb-6 sm:mb-10 ">
