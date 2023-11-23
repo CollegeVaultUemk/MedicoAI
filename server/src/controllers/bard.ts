@@ -82,10 +82,11 @@ export const GetSingleBardChatCtrl = async (
 
 export const GetAllChatsCtrl = async (req: AuthRequest, res: Response) => {
   try {
-    const loggedInUser = await User.findById(req.user?._id).populate("AIChat");
+    const userId = req.user?._id;
+    const userChats = await Bard.find({ user: userId }).sort("-createdAt");
     return res.status(StatusCodes.OK).json({
       success: true,
-      data: loggedInUser?.AIChat,
+      chats: userChats,
     });
   } catch (error: any) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
