@@ -8,6 +8,7 @@ import Map from "./components/Map/Map";
 import Dashboard from "./components/Dashboard/Dashboard";
 import GettingStarted from "./components/Dashboard/GettingStarted";
 import NewAIChat from "./components/Dashboard/AIChat/NewAIChat";
+import ContinueAIChat from "./components/Dashboard/AIChat/ContinueAIChat";
 
 const router = createBrowserRouter([
   {
@@ -15,20 +16,25 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        Component: Home,
-      },
-      {
-        path: "/map",
-        Component: Map,
-      },
-      {
-        path: "/medicines",
-        Component: Medicines,
+        children: [
+          {
+            index: true,
+            Component: Home,
+          },
+          {
+            path: "map",
+            Component: Map,
+          },
+          {
+            path: "/medicines",
+            Component: Medicines,
+          },
+        ],
       },
     ],
   },
   {
-    path: "/dashboard/*",
+    path: "/dashboard/",
     Component: Dashboard,
     children: [
       {
@@ -36,8 +42,17 @@ const router = createBrowserRouter([
         Component: GettingStarted,
       },
       {
-        path: "new-ai-chat",
-        Component: NewAIChat,
+        path: "ai-chat/",
+        children: [
+          {
+            index: true,
+            Component: NewAIChat,
+          },
+          {
+            path: ":id",
+            Component: ContinueAIChat,
+          },
+        ],
       },
     ],
   },

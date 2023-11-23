@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "@/state/hooks";
+import {
+  selectAiChat,
+  GetAllAiChatsAction,
+} from "@/state/reducers/aichatReducer";
 import { Button } from "../ui/button";
 import Logo from "../../assets/logo/logo.svg";
 import SidebarLinkGroup from "./SidebarLinkGroup";
@@ -11,6 +16,9 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
+  const dispatch = useAppDispatch();
+  const aiChats = useAppSelector(selectAiChat);
+  const { loading, aiChat } = aiChats;
   const location = useLocation();
   const { pathname } = location;
 
@@ -21,6 +29,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
+
+  const [chatsArray, setChatsArray] = useState<any[]>([]);
 
   // close on click outside
   useEffect(() => {
@@ -56,6 +66,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       document.querySelector("body")?.classList.remove("sidebar-expanded");
     }
   }, [sidebarExpanded]);
+
+  useEffect(() => {
+    dispatch(GetAllAiChatsAction());
+  }, [dispatch, aiChat]);
+
+  useEffect(() => {
+    if (!loading && aiChat?.chats) {
+      setChatsArray(aiChat.chats);
+    }
+  }, [loading, aiChat]);
 
   return (
     <aside
@@ -191,10 +211,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           !open && "hidden"
                         }`}
                       >
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6 ">
                           <li>
                             <NavLink
-                              to="/dashboard/new-ai-chat"
+                              to="/dashboard/ai-chat"
                               className="flex justify-center items-center gap-2"
                             >
                               <Button
@@ -221,17 +241,25 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               </div>
                             </NavLink>
                           </li>
-                          <li>
-                            <NavLink
-                              to="/"
-                              className={({ isActive }) =>
-                                "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white " +
-                                (isActive && "!text-white")
-                              }
-                            >
-                              eCommerce
-                            </NavLink>
-                          </li>
+                          <div className="mt-4 flex flex-col gap-2.5 pl-6 max-h-[150px] overflow-y-scroll">
+                            {chatsArray.length > 0 &&
+                              chatsArray.map((chats, index) => (
+                                <li
+                                  key={index}
+                                  className="w-full h-[30px] overflow-hidden"
+                                >
+                                  <NavLink
+                                    to={`/dashboard/ai-chat/${chats._id}`}
+                                    className={({ isActive }) =>
+                                      "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white " +
+                                      (isActive && "!text-white")
+                                    }
+                                  >
+                                    {chats.chat[0].question}
+                                  </NavLink>
+                                </li>
+                              ))}
+                          </div>
                         </ul>
                       </div>
                       {/* <!-- Dropdown Menu End --> */}

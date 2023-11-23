@@ -2,20 +2,28 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/state/hooks";
-import { NewAiChatAction } from "@/state/reducers/aichatReducer";
+import {
+  ContinueAiChatAction,
+  NewAiChatAction,
+} from "@/state/reducers/aichatReducer";
 
 interface UserInputProps {
+  bardId?: string | undefined;
   setUserInput: (value: string) => void;
 }
 
-const UserInput = ({ setUserInput }: UserInputProps) => {
+const UserInput = ({ setUserInput, bardId }: UserInputProps) => {
   const dispatch = useAppDispatch();
   const [input, setInput] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setUserInput(input);
-    await dispatch(NewAiChatAction(input));
+    if (bardId) {
+      dispatch(ContinueAiChatAction({ bardId, question: input }));
+    } else {
+      dispatch(NewAiChatAction(input));
+    }
     setInput("");
   };
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useNavigate, NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -81,8 +81,6 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export default function Navbar() {
-  const navigate = useNavigate();
-  const location = useLocation();
   const theme = useAppSelector(selectTheme);
   const userValues = useAppSelector(selectUserValues);
   const { user } = userValues;
@@ -92,13 +90,6 @@ export default function Navbar() {
   const handleSignUpFromLogin = () => {
     setAuthSignUpFromLogin(!signUpFromLogin);
   };
-  React.useEffect(() => {
-    if (user) {
-      navigate("/map");
-    } else {
-      navigate(`${location.pathname}`);
-    }
-  }, [user, navigate, location.pathname]);
 
   return (
     <>

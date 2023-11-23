@@ -1,43 +1,33 @@
-import MessageBox from "./MessageBox";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/state/hooks";
 import { selectAiChat } from "@/state/reducers/aichatReducer";
-import { useEffect, useState } from "react";
+import MessageBox from "./MessageBox";
 
 interface ChatContentProps {
   userInput: string;
 }
 
-interface ChatType {
-  question: string;
-  answer: string;
-}
+// interface ChatType {
+//   question: string;
+//   answer: string;
+// }
 
 const ChatContent = ({ userInput }: ChatContentProps) => {
+  const navigate = useNavigate();
   const aiChats = useAppSelector(selectAiChat);
-  const { loading, aiChat, serverErr, appErr } = aiChats;
-  const [chatArray, setChatArray] = useState<ChatType[]>([
-    { question: userInput, answer: "pending..." },
-  ]);
+  const { aiChat, loading } = aiChats;
 
   useEffect(() => {
-    if (aiChat) {
-      setChatArray(aiChat.data.chat);
+    if (!loading && aiChat?.data) {
+      navigate(`/dashboard/ai-chat/${aiChat.data._id}`);
     }
-  }, [aiChat]);
+  }, [aiChat, loading, navigate]);
 
-  console.log(aiChat, serverErr, appErr);
   return (
     <div className="px-15 flex flex-col gap-10 overflow-y-scroll">
-      {chatArray.map((chat) => (
-        <>
-          <MessageBox messageType="user">{chat.question}</MessageBox>
-          {loading ? (
-            <p>Loading response....</p>
-          ) : (
-            <MessageBox messageType="ai">{chat.answer}</MessageBox>
-          )}
-        </>
-      ))}
+      <MessageBox messageType="user">{userInput}</MessageBox>
+      <p>Loading response....</p>
     </div>
   );
 };
