@@ -69,7 +69,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   useEffect(() => {
     dispatch(GetAllAiChatsAction());
-  }, [dispatch, aiChat]);
+  }, [dispatch, aiChat?.data]);
 
   useEffect(() => {
     if (!loading && aiChat?.chats) {
@@ -244,10 +244,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           <div className="mt-4 flex flex-col gap-2.5 pl-6 max-h-[150px] overflow-y-scroll">
                             {chatsArray.length > 0 &&
                               chatsArray.map((chats, index) => (
-                                <li
-                                  key={index}
-                                  className="w-full h-[30px] overflow-hidden"
-                                >
+                                <li key={index} className="w-full h-full">
                                   <NavLink
                                     to={`/dashboard/ai-chat/${chats._id}`}
                                     className={({ isActive }) =>
