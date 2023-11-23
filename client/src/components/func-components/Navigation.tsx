@@ -47,36 +47,13 @@ const components: { title: string; href: string; description: string }[] = [
     title: "Medicines",
     href: "/medicines",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "doctor's prescribed medicines, over-the-counter medicines, and complementary medicines & drugs.",
   },
   {
-    title: "Hover Card",
+    title: "Skin Care Products",
     href: "/docs/primitives/hover-card",
     description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "Lotions,cream,ointments,etc. that are used to treat skin diseases.",
   },
 ];
 
@@ -100,7 +77,7 @@ export default function Navbar() {
               theme ? "text-white" : ""
             } scroll-m-20 text-2xl font-semibold tracking-tight`}
           >
-            MEDLIFY
+            Medico.AI
           </h3>
         </div>
         <div className="min-[320px]:hidden md:block">
@@ -114,7 +91,7 @@ export default function Navbar() {
                       : ""
                   }
                 >
-                  Getting started
+                  Extra 👾
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -125,27 +102,19 @@ export default function Navbar() {
                           href="/"
                         >
                           <div className="mb-2 mt-4 text-lg font-medium">
-                            shadcn/ui
+                            About Us 🚀
                           </div>
                           <p className="text-sm leading-tight text-muted-foreground">
-                            Beautifully designed components built with Radix UI
-                            and Tailwind CSS.
+                            meet the team behind this project 🥂.
                           </p>
                         </a>
                       </NavigationMenuLink>
                     </li>
-                    <ListItem href="/docs" title="Introduction">
-                      Re-usable components built using Radix UI and Tailwind
-                      CSS.
+                    <ListItem href="/docs" title="PowerPoint">
+                      PPT presentation of the project.📽️ CSS.
                     </ListItem>
-                    <ListItem href="/docs/installation" title="Installation">
-                      How to install dependencies and structure your app.
-                    </ListItem>
-                    <ListItem
-                      href="/docs/primitives/typography"
-                      title="Typography"
-                    >
-                      Styles for headings, paragraphs, lists...etc
+                    <ListItem href="/docs/installation" title="Report Softcopy">
+                      download the project report.📃
                     </ListItem>
                   </ul>
                 </NavigationMenuContent>
@@ -158,7 +127,7 @@ export default function Navbar() {
                       : ""
                   }
                 >
-                  Components
+                  Shop 🛍️
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
@@ -187,7 +156,7 @@ export default function Navbar() {
                   </NavigationMenuLink>
                 </NavLink>
               </NavigationMenuItem>
-              <NavigationMenuItem>
+              {/* <NavigationMenuItem>
                 <NavigationMenuLink
                   className="cursor-pointer"
                   onClick={() => dispatch(toggleTheme())}
@@ -198,7 +167,7 @@ export default function Navbar() {
                     <BsLightbulb size={20} className="text-white" />
                   )}
                 </NavigationMenuLink>
-              </NavigationMenuItem>
+              </NavigationMenuItem> */}
             </NavigationMenuList>
           </NavigationMenu>
         </div>

@@ -6,7 +6,7 @@ const Hero = () => {
       <div className="mx-auto w-full max-w-7xl">
         <div className="sm:pt-32 lg:pt-52 pt-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[50px]">
-            <div className="max-w-[720px] flex flex-col min-[320px]:items-center min-[320px]:gap-4 md:gap-5 md:items-start lg:gap-2">
+            <div className="max-w-[720px] flex flex-col min-[320px]:items-center min-[320px]:gap-4 md:gap-5 md:items-start lg:gap-1">
               <div className="mb-6">
                 <h1 className="font-bold text-4xl text-black md:text-6xl">
                   Optimize Your Medical Needs
@@ -19,7 +19,7 @@ const Hero = () => {
                         "url('https://assets.website-files.com/64e30fb523cefa79f1c3f08f/64e34703019f31054e880eb2_underline.svg')",
                     }}
                   >
-                    MedicoAI
+                    Medico.AI
                   </span>
                 </h1>
               </div>
