@@ -15,7 +15,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAppSelector, useAppDispatch } from "@/state/hooks";
 import { userLoginAction } from "@/state/reducers/userReducer";
-import { selectTheme } from "@/state/reducers/themeReducer";
 import { selectUserValues } from "@/state/reducers/userReducer";
 import { ReactNode } from "react";
 // import { useNavigate } from "react-router-dom";
@@ -34,7 +33,6 @@ const loginSchema = Yup.object({
 
 export default function Login({ children, onHandleSignUp }: LoginProps) {
   const dispatch = useAppDispatch();
-  const theme = useAppSelector(selectTheme);
   const userValues = useAppSelector(selectUserValues);
   const { loading, appErr } = userValues;
   const formik = useFormik({
@@ -52,8 +50,8 @@ export default function Login({ children, onHandleSignUp }: LoginProps) {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant={theme ? "darkGhost" : "ghost"}
-          className={theme ? "text-white" : ""}
+          variant="outline"
+          className="lg:w-[80px] lg:min-w-[60px] md:w-[70px] text-white"
         >
           {children}
         </Button>

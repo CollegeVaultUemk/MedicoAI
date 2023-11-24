@@ -1,15 +1,7 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,59 +21,14 @@ import Login from "./Login";
 import SignUp from "./Signup";
 import SignUpFromLogin from "./SignUpFromLogin";
 import { useAppSelector, useAppDispatch } from "@/state/hooks";
-import { selectTheme, toggleTheme } from "@/state/reducers/themeReducer";
 import {
   selectUserValues,
   userLogOutAction,
 } from "@/state/reducers/userReducer";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { MdDarkMode } from "react-icons/md";
-import { BsLightbulb } from "react-icons/bs";
 import { Outlet } from "react-router";
 
-const darkNavigationMenuTrigger =
-  "text-white group inline-flex h-9 w-max items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-medium transition-colors hover:bg-accent-foreground hover:text-accent focus:bg-accent-foreground focus:text-accent focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent-foreground/50 data-[state=open]:bg-accent-foreground/50";
-
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Medicines",
-    href: "/medicines",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
-
 export default function Navbar() {
-  const theme = useAppSelector(selectTheme);
   const userValues = useAppSelector(selectUserValues);
   const { user } = userValues;
   const dispatch = useAppDispatch();
@@ -93,137 +40,66 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex flex-row justify-between items-center w-full h-[50px]">
-        <div className="pl-0 sm:pl-2 md:pl-3 lg:pl-5">
-          <h3
-            className={`${
-              theme ? "text-white" : ""
-            } scroll-m-20 text-2xl font-semibold tracking-tight`}
+      <div className="flex flex-row justify-between items-center w-full h-[70px] bg-[#008080] font-Montserrat">
+        <div className="pl-0 sm:pl-2 md:pl-3 lg:pl-5 w-[50%]">
+          <div className="flex justify-center items-center gap-2.5 w-[150px]">
+            <svg
+              viewBox="0 0 1024 1024"
+              fill="currentColor"
+              height="1.5em"
+              width="1.5em"
+            >
+              <path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3zM664.8 561.6l36.1 210.3L512 672.7 323.1 772l36.1-210.3-152.8-149L417.6 382 512 190.7 606.4 382l211.2 30.7-152.8 148.9z" />
+            </svg>
+            <h3 className=" scroll-m-20 text-2xl font-semibold tracking-tight text-white">
+              medico.ai
+            </h3>
+          </div>
+        </div>
+        <ul className="sm:hidden md:flex md:flex-row justify-center items-center md:gap-7 lg:gap-15 w-[30%]">
+          <NavLink
+            to="/"
+            className="lg:min-w-[50px] text-white hover:text-black"
           >
-            MEDLIFY
-          </h3>
-        </div>
-        <div className="min-[320px]:hidden md:block">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger
-                  className={
-                    theme
-                      ? "text-white bg-foreground hover:bg-accent-foreground hover:text-accent focus:bg-accent-foreground focus:text-accent data-[active]:bg-accent-foreground/50 data-[state=open]:bg-accent-foreground/50"
-                      : ""
-                  }
-                >
-                  Getting started
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                          href="/"
-                        >
-                          <div className="mb-2 mt-4 text-lg font-medium">
-                            shadcn/ui
-                          </div>
-                          <p className="text-sm leading-tight text-muted-foreground">
-                            Beautifully designed components built with Radix UI
-                            and Tailwind CSS.
-                          </p>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                    <ListItem href="/docs" title="Introduction">
-                      Re-usable components built using Radix UI and Tailwind
-                      CSS.
-                    </ListItem>
-                    <ListItem href="/docs/installation" title="Installation">
-                      How to install dependencies and structure your app.
-                    </ListItem>
-                    <ListItem
-                      href="/docs/primitives/typography"
-                      title="Typography"
-                    >
-                      Styles for headings, paragraphs, lists...etc
-                    </ListItem>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger
-                  className={
-                    theme
-                      ? "text-white bg-foreground hover:bg-accent-foreground hover:text-accent focus:bg-accent-foreground focus:text-accent data-[active]:bg-accent-foreground/50 data-[state=open]:bg-accent-foreground/50"
-                      : ""
-                  }
-                >
-                  Components
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                    {components.map((component) => (
-                      <ListItem
-                        key={component.title}
-                        title={component.title}
-                        href={component.href}
-                      >
-                        {component.description}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavLink to="/dashboard">
-                  <NavigationMenuLink
-                    className={
-                      theme
-                        ? darkNavigationMenuTrigger
-                        : navigationMenuTriggerStyle()
-                    }
-                  >
-                    Dashboard
-                  </NavigationMenuLink>
-                </NavLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  className="cursor-pointer"
-                  onClick={() => dispatch(toggleTheme())}
-                >
-                  {!theme ? (
-                    <MdDarkMode size={20} />
-                  ) : (
-                    <BsLightbulb size={20} className="text-white" />
-                  )}
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
+            Home
+          </NavLink>
+          <NavLink
+            to="/about"
+            className="lg:min-w-[50px] text-white hover:text-black"
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/pricing"
+            className="lg:min-w-[50px] text-white hover:text-black"
+          >
+            Pricing
+          </NavLink>
+        </ul>
         {!user ? (
-          <div className="flex flex-row md:gap-[0.5px] lg:gap-4 pr-0 sm:pr-2 md:pr-3 lg:pr-5 min-[320px]:hidden md:block">
-            <Login onHandleSignUp={handleSignUpFromLogin}>Login</Login>
+          <div className="w-[20%]">
             <SignUpFromLogin
               onSignUp={signUpFromLogin}
               onHandleSignUp={handleSignUpFromLogin}
             >
               Sign up
             </SignUpFromLogin>
-            <SignUp>Sign up</SignUp>
+            <div className="sm:hidden md:flex md:flex-row justify-center items-center md:gap-3 lg:gap-5 pr-0 sm:pr-2 md:pr-3 lg:pr-5">
+              <SignUp>Try Now</SignUp>
+              <Login onHandleSignUp={handleSignUpFromLogin}>Login</Login>
+            </div>
           </div>
         ) : (
           <div className="flex flex-row md:gap-[0.5px] lg:gap-4 pr-0 sm:pr-2 md:pr-3 lg:pr-5 min-[320px]:hidden md:block">
             <Button
-              variant={theme ? "darkGhost" : "ghost"}
-              className={theme ? "text-white" : ""}
+              variant="outline"
               onClick={() => dispatch(userLogOutAction({}))}
             >
               Log Out
             </Button>
           </div>
         )}
+
         <div className="md:hidden pr-0 sm:pr-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
