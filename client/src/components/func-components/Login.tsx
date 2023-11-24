@@ -17,13 +17,13 @@ import { useAppSelector, useAppDispatch } from "@/state/hooks";
 import { userLoginAction } from "@/state/reducers/userReducer";
 import { selectUserValues } from "@/state/reducers/userReducer";
 import { ReactNode } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import SignUp from "./Signup";
 import { DialogClose } from "@radix-ui/react-dialog";
 
 interface LoginProps {
   children: ReactNode;
-  onHandleSignUp: () => void;
+  onHandleSignUp?: () => void;
 }
 
 const loginSchema = Yup.object({
@@ -34,14 +34,16 @@ const loginSchema = Yup.object({
 export default function Login({ children, onHandleSignUp }: LoginProps) {
   const dispatch = useAppDispatch();
   const userValues = useAppSelector(selectUserValues);
+  const navigate = useNavigate();
   const { loading, appErr } = userValues;
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      dispatch(userLoginAction(values));
+    onSubmit: async (values) => {
+      await dispatch(userLoginAction(values));
+      navigate("/dashboard");
     },
     validationSchema: loginSchema,
   });

@@ -1,8 +1,15 @@
 import { Button } from "../ui/button";
+import { NavLink } from "react-router-dom";
+import { useAppSelector } from "@/state/hooks";
+import { selectUserValues } from "@/state/reducers/userReducer";
+import SignUp from "./Signup";
 import ReactPlayer from "react-player";
 import video from "../../assets/videos/sample.mp4";
 
 const Hero = () => {
+  const userValues = useAppSelector(selectUserValues);
+  const { user } = userValues;
+
   return (
     <div className="flex flex-col items-center px-5 md:px-10 font-Montserrat">
       <div className="my-[100px] flex flex-col items-center gap-7">
@@ -12,12 +19,20 @@ const Hero = () => {
           comprehensive consultations.
         </p>
       </div>
-      <Button
-        variant="default"
-        className="bg-[#008080] text-white w-[200px] mb-10"
-      >
-        Try for Free
-      </Button>
+      {user ? (
+        <NavLink to="/dashboard">
+          <Button
+            variant="default"
+            className="bg-[#008080] text-white w-[200px] mb-10"
+          >
+            Try for Free
+          </Button>
+        </NavLink>
+      ) : (
+        <SignUp styles="bg-[#008080] text-white w-[200px] mb-10">
+          Try for Free
+        </SignUp>
+      )}
       <ReactPlayer
         url={video}
         width="70%"

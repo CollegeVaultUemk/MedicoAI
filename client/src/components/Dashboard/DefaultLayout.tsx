@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useAppSelector } from "@/state/hooks";
+import { selectUserValues } from "@/state/reducers/userReducer";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
 
 const DefaultLayout = () => {
+  const userValues = useAppSelector(selectUserValues);
+  const { user } = userValues;
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  return (
+  return user ? (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className="flex h-screen overflow-hidden">
@@ -32,6 +36,8 @@ const DefaultLayout = () => {
       </div>
       {/* <!-- ===== Page Wrapper End ===== --> */}
     </div>
+  ) : (
+    <div>Sorry, You need to be authenticated to access this route.</div>
   );
 };
 

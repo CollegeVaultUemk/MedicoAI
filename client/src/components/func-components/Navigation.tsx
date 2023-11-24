@@ -85,18 +85,31 @@ export default function Navbar() {
               Sign up
             </SignUpFromLogin>
             <div className="sm:hidden md:flex md:flex-row justify-center items-center md:gap-3 lg:gap-5 pr-0 sm:pr-2 md:pr-3 lg:pr-5">
-              <SignUp>Try Now</SignUp>
+              <SignUp styles="lg:w-[120px] lg:min-w-[100px] md:[70px] bg-white text-[#008080] hover:text-white">
+                Try Now
+              </SignUp>
               <Login onHandleSignUp={handleSignUpFromLogin}>Login</Login>
             </div>
           </div>
         ) : (
-          <div className="flex flex-row md:gap-[0.5px] lg:gap-4 pr-0 sm:pr-2 md:pr-3 lg:pr-5 min-[320px]:hidden md:block">
-            <Button
-              variant="outline"
-              onClick={() => dispatch(userLogOutAction({}))}
-            >
-              Log Out
-            </Button>
+          <div className="w-[20%]">
+            <div className="sm:hidden md:flex md:flex-row justify-center items-center md:gap-3 lg:gap-5 pr-0 sm:pr-2 md:pr-3 lg:pr-5">
+              <NavLink to="/dashboard">
+                <Button
+                  variant="default"
+                  className="lg:w-[120px] lg:min-w-[100px] md:[70px] bg-white text-[#008080] hover:text-white"
+                >
+                  Dashboard
+                </Button>
+              </NavLink>
+              <Button
+                variant="outline"
+                onClick={() => dispatch(userLogOutAction({}))}
+                className="lg:w-[120px] lg:min-w-[60px] md:w-[100px] text-white"
+              >
+                Log Out
+              </Button>
+            </div>
           </div>
         )}
 

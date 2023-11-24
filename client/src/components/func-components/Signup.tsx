@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,10 +17,10 @@ import { useAppSelector, useAppDispatch } from "@/state/hooks";
 import { userRegisterAction } from "@/state/reducers/userReducer";
 import { selectUserValues } from "@/state/reducers/userReducer";
 import { ReactNode } from "react";
-// import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
   children: ReactNode;
+  styles?: string;
 }
 
 const loginSchema = Yup.object({
@@ -29,9 +30,9 @@ const loginSchema = Yup.object({
   password: Yup.string().required("Password is Required"),
 });
 
-export default function SignUp({ children }: LoginProps) {
+export default function SignUp({ children, styles }: LoginProps) {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const userValues = useAppSelector(selectUserValues);
   const { appErr } = userValues;
   const formik = useFormik({
@@ -43,6 +44,7 @@ export default function SignUp({ children }: LoginProps) {
     },
     onSubmit: (values) => {
       dispatch(userRegisterAction(values));
+      navigate("/dashboard");
     },
     validationSchema: loginSchema,
   });
@@ -50,17 +52,14 @@ export default function SignUp({ children }: LoginProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="default"
-          className="lg:w-[120px] lg:min-w-[100px] md:[70px] bg-white text-[#008080] hover:text-white"
-        >
+        <Button variant="default" className={styles}>
           {children}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={formik.handleSubmit}>
           <DialogHeader>
-            <DialogTitle className="text-center">Log In</DialogTitle>
+            <DialogTitle className="text-center">Sign Up</DialogTitle>
             <DialogDescription className="text-center">
               Enter you email and password to sign in to your account
             </DialogDescription>

@@ -7,6 +7,9 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import GettingStarted from "./components/Dashboard/GettingStarted";
 import NewAIChat from "./components/Dashboard/AIChat/NewAIChat";
 import ContinueAIChat from "./components/Dashboard/AIChat/ContinueAIChat";
+import About from "./components/func-components/About";
+import Pricing from "./components/func-components/Pricing";
+import ComingSoon from "./components/func-components/ComingSoon";
 
 const router = createBrowserRouter([
   {
@@ -24,8 +27,20 @@ const router = createBrowserRouter([
             Component: Map,
           },
           {
-            path: "/medicines",
+            path: "medicines",
             Component: Medicines,
+          },
+          {
+            path: "about",
+            Component: About,
+          },
+          {
+            path: "pricing",
+            Component: Pricing,
+          },
+          {
+            path: "construction",
+            Component: ComingSoon,
           },
         ],
       },
