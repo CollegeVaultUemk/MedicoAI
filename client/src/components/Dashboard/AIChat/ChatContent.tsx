@@ -27,7 +27,7 @@ const ChatContent = ({ userInput }: ChatContentProps) => {
   return (
     <div className="px-15 flex flex-col gap-10 overflow-y-scroll">
       <MessageBox messageType="user">{userInput}</MessageBox>
-      <p>Loading response....</p>
+      <p>Thinking...</p>
     </div>
   );
 };

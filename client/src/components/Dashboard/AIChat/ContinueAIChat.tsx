@@ -60,7 +60,7 @@ const ContinueAIChat = () => {
         {userInput !== "" && (
           <div ref={loadingRef} className="flex flex-col gap-10">
             <MessageBox messageType="user">{userInput}</MessageBox>
-            <p>Loading response....</p>
+            <p>Thinking...</p>
           </div>
         )}
       </div>
