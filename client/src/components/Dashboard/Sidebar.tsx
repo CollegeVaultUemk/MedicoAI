@@ -220,7 +220,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               chatsArray.map((chats, index) => (
                                 <li
                                   key={index}
-                                  className=" max-w-[150px] max-h-[30px] overflow-hidden rounded-md"
+                                  className=" w-[80%] h-full overflow-hidden rounded-md"
                                 >
                                   <NavLink
                                     to={`/dashboard/${chats._id}`}
