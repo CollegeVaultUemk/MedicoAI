@@ -7,7 +7,7 @@ import {
   GetAllAiChatsAction,
 } from "@/state/reducers/aichatReducer";
 import { Button } from "../ui/button";
-import Logo from "../../assets/logo/logo.svg";
+import Logo from "../../assets/logo/medico_logo_2.jpg";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 
 interface SidebarProps {
@@ -248,6 +248,24 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 }}
               </SidebarLinkGroup>
               {/* <!-- Menu Item Dashboard --> */}
+              <li>
+                <NavLink
+                  to="/"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname === "/" && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <svg
+                    viewBox="0 0 1024 1024"
+                    fill="currentColor"
+                    height="1.4em"
+                    width="1.4em"
+                  >
+                    <path d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 00-44.4 0L77.5 505a63.9 63.9 0 00-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0018.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z" />
+                  </svg>
+                  Home
+                </NavLink>
+              </li>
             </ul>
           </div>
         </nav>
