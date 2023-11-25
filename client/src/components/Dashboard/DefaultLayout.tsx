@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/state/hooks";
 import { selectUserValues } from "@/state/reducers/userReducer";
 import Header from "./Header";
@@ -8,7 +9,12 @@ import { Outlet } from "react-router-dom";
 const DefaultLayout = () => {
   const userValues = useAppSelector(selectUserValues);
   const { user } = userValues;
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    if (!user) navigate("/");
+  }, [user, navigate]);
 
   return user ? (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">

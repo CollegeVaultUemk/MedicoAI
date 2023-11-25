@@ -1,10 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
-import { useAppSelector } from "@/state/hooks";
-import { selectUserValues } from "@/state/reducers/userReducer";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
+import {
+  selectUserValues,
+  userLogOutAction,
+} from "@/state/reducers/userReducer";
 import { Link } from "react-router-dom";
 
 const DropdownUser = () => {
+  const dispatch = useAppDispatch();
   const userValues = useAppSelector(selectUserValues);
   const { user } = userValues;
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -37,6 +41,10 @@ const DropdownUser = () => {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
+
+  const logOutHandler = () => {
+    dispatch(userLogOutAction({}));
+  };
 
   return (
     <div className="relative">
@@ -89,7 +97,10 @@ const DropdownUser = () => {
           dropdownOpen === true ? "block" : "hidden"
         }`}
       >
-        <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+        <button
+          className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+          onClick={logOutHandler}
+        >
           <svg
             className="fill-current"
             width="22"
