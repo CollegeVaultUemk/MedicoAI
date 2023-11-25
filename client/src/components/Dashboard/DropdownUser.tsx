@@ -4,8 +4,6 @@ import { useAppSelector } from "@/state/hooks";
 import { selectUserValues } from "@/state/reducers/userReducer";
 import { Link } from "react-router-dom";
 
-import UserOne from "../../assets/user/user-01.png";
-
 const DropdownUser = () => {
   const userValues = useAppSelector(selectUserValues);
   const { user } = userValues;
