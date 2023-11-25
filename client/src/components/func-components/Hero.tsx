@@ -4,7 +4,7 @@ import { useAppSelector } from "@/state/hooks";
 import { selectUserValues } from "@/state/reducers/userReducer";
 import SignUp from "./Signup";
 import ReactPlayer from "react-player";
-import video from "../../assets/videos/med_chat.mp4";
+import video from "../../assets/videos/medicoai.mp4";
 
 const Hero = () => {
   const userValues = useAppSelector(selectUserValues);
