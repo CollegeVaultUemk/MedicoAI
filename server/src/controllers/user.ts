@@ -39,6 +39,7 @@ export const loginUserCtrl = asyncHandler(async (req, res) => {
   res.status(StatusCodes.OK).json({
     success: true,
     message: "User logged in successfully",
+    newUser: loggedInUser,
     token,
   });
 });
