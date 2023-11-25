@@ -2,28 +2,28 @@ export default function About() {
   const features = [
     {
       title: "Healthy Lifestyle",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
+      desc: "lifestyle tips and suggestions to improve your daily life with healthy choices.",
     },
     {
       title: "Symptoms Checker",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
+      desc: "Will diagnose your symptoms and give you advice on next steps.",
     },
     {
       title: "Treatment Recommendation",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
+      desc: "Recommendations for treatment options based on your symptoms and diagnosis.",
     },
-    {
-      title: "Nigger",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
-    },
-    {
-      title: "Pata Nhi",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
-    },
-    {
-      title: "Hatt Laude",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
-    },
+    // {
+    //   title: "Medication Reminder",
+    //   desc: "Remind you to take your medications on time.",
+    // },
+    // {
+    //   title: "Healthcare Providers",
+    //   desc: "Connect you with healthcare providers.",
+    // },
+    // {
+    //   title: "Emergency",
+    //   desc: "Call emergency services if you need help.",
+    // },
   ];
 
   const team = [
@@ -31,42 +31,42 @@ export default function About() {
       avatar:
         "https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
       name: "Shaikh Parwez Hasim",
-      title: "Product designer",
+      title: "frontend developer / report writer",
       linkedin: "javascript:void(0)",
       twitter: "javascript:void(0)",
     },
     {
       avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
       name: "Swapnil Sarkar",
-      title: "Software engineer",
+      title: "Fullstack developer",
       linkedin: "javascript:void(0)",
       twitter: "javascript:void(0)",
     },
     {
       avatar: "https://randomuser.me/api/portraits/women/79.jpg",
       name: "Pratyaksh Mehrotra",
-      title: "Full stack engineer",
+      title: "designer",
       linkedin: "javascript:void(0)",
       twitter: "javascript:void(0)",
     },
     {
       avatar: "https://randomuser.me/api/portraits/women/63.jpg",
-      name: "Chutiya 1",
-      title: "Head of designers",
+      name: "Srijita Biswas",
+      title: "Lead powerpoint presenter",
       linkedin: "javascript:void(0)",
       twitter: "javascript:void(0)",
     },
     {
       avatar: "https://randomuser.me/api/portraits/men/86.jpg",
-      name: "Chutiya 2",
-      title: "Product designer",
+      name: "Vedatrayi Banerjee",
+      title: "survey lead/ report",
       linkedin: "javascript:void(0)",
       twitter: "javascript:void(0)",
     },
     {
       avatar: "https://randomuser.me/api/portraits/men/46.jpg",
-      name: "Chutiya 3",
-      title: "Product manager",
+      name: "Amaan Rasool",
+      title: "Logo designer",
       linkedin: "javascript:void(0)",
       twitter: "javascript:void(0)",
     },
@@ -148,8 +148,8 @@ export default function About() {
             What you will get out of our Ai?
           </p>
           <p className="text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            congue, nisl eget molestie varius, enim ex faucibus purus
+            Chat with our MEDICO AI to get comprehensive consultations and
+            suggestions on your next steps towards a healthier life.
           </p>
         </div>
         <div className="mt-12">
@@ -185,8 +185,8 @@ export default function About() {
             Meet our team
           </h3>
           <p className="text-gray-600 mt-3 ">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.Lorem Ipsum has been the industry's standard dummy.
+            This project is brought to life by a team few students and their
+            dedication to make a difference in the world.
           </p>
         </div>
         <div className="mt-12">

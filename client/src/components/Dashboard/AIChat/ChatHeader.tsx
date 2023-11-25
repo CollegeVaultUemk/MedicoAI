@@ -5,20 +5,20 @@ type ExampleTypes = {
 
 const Examples: ExampleTypes = [
   {
-    heading: "Come up with concepts?",
+    heading: "Catch your symptoms ?",
     prompt: "for something",
   },
   {
-    heading: "heading 2",
-    prompt: "The best medicine for fever is paracetamol.",
+    heading: "Ask medico",
+    prompt: "The best medicine for fever ?",
   },
   {
-    heading: "heading 3",
-    prompt: "The best medicine for fever is nigga.",
+    heading: "medico recommends",
+    prompt: "Best medicine for headaches ?",
   },
   {
-    heading: "heading 4",
-    prompt: "The best medicine for fever is a kid.",
+    heading: "medico is here to help",
+    prompt: "The best medicine for diarrhea ?",
   },
 ];
 
@@ -32,9 +32,7 @@ const ChatHeader = () => {
           Chat with our AI
         </h3>
         <p className={`mt-3 text-gray-600 dark:text-gray-300`}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          dignissim nibh nisl, vel egestas magna rhoncus at. Nunc elementum
-          efficitur tortor in laoreet.
+          Get comprehensive consultations from our AI chat bot MEDICO 🚀 !.
         </p>
         <div className="mt-12 flex justify-center">
           <ul className="inline-grid grid-cols-2 gap-x-10 gap-y-6 md:gap-x-16 pb-18">
