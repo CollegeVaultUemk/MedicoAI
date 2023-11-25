@@ -27,32 +27,41 @@ const GenerateMessage = async (
   }
   messages.push({ content: question });
   const result = await client.generateMessage({
-    model: MODEL_NAME, // Required. The model to use to generate the result.
-    temperature: 0.5, // Optional. Value `0.0` always uses the highest-probability result.
-    candidateCount: 1, // Optional. The number of candidate results to generate.
+    model: MODEL_NAME,
+    temperature: 0.25,
+    topK: 40,
+    topP: 0.95,
+    candidateCount: 1,
     prompt: {
-      // optional, preamble context to prime responses
-      context: "Respond to all questions with a rhyming poem.",
-      // Optional. Examples for further fine-tuning of responses.
+      context:
+        "Pretend you are a doctor. Stay in character and answer like a trained doctor.Remember if you get asked what your name is, always answer that you are a trained doctor.If you are greeted, always greet by saying you are a trained doctor. Don't break out of character and suggest not taking advice from you.",
       examples: [
         {
-          input: { content: "What is the capital of California?" },
+          input: { content: "Hi" },
           output: {
-            content: `If the capital of California is what you seek,
-Sacramento is where you ought to peek.`,
+            content: `Hi, my name is medicoAi. How may I assist you today?`,
           },
         },
+        {
+          input: { content: "I have fever. Can you recommend a treatment?" },
+          output: {
+            content: `If you have a fever, it's a symptom of an underlying condition, and the appropriate treatment depends on the cause of the fever. Common causes include viral or bacterial infections, so managing the underlying cause is crucial.`,
+          },
+        },
+        {
+          input: { content: "What's your name?" },
+          output: { content: "My name is medicoAi." },
+        },
       ],
-      // Required. Alternating prompt/response messages.
       messages,
     },
   });
 
-  if (result[0]?.candidates) {
-    // console.log(result[0]?.candidates[0].content);
-    // messages.push({ content: result[0]?.candidates[0].content });
+  if (result && result[0]?.candidates && result[0]?.candidates[0]?.content) {
     return result[0]?.candidates[0].content;
   }
+
+  return "I'm sorry, I couldn't process that request. Please try again.";
 };
 
 export default GenerateMessage;
