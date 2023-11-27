@@ -5,6 +5,7 @@ import {
   selectAiChat,
   GetSingleAiChatAction,
 } from "@/state/reducers/aichatReducer";
+import ReactMarkdown from "react-markdown";
 import MessageBox from "./MessageBox";
 import UserInput from "./UserInput";
 
@@ -54,7 +55,9 @@ const ContinueAIChat = () => {
           chatArray.map((chat, index) => (
             <div key={index} className="flex flex-col gap-10">
               <MessageBox messageType="user">{chat.question}</MessageBox>
-              <MessageBox messageType="ai">{chat.answer}</MessageBox>
+              <MessageBox messageType="ai">
+                <ReactMarkdown>{chat.answer}</ReactMarkdown>
+              </MessageBox>
             </div>
           ))}
         {userInput !== "" && (
