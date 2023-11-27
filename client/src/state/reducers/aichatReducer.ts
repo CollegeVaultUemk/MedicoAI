@@ -42,7 +42,7 @@ export const NewAiChatAction = createAsyncThunk<
   };
   try {
     const { data } = await axios.post<Bard>(
-      "http://localhost:8000/api/v1/bard/create-chat",
+      `${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/bard/create-chat`,
       { question },
       config
     );
@@ -76,7 +76,7 @@ export const ContinueAiChatAction = createAsyncThunk<
     };
     try {
       const { data } = await axios.put<Bard>(
-        `http://localhost:8000/api/v1/bard/${bardId}`,
+        `${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/bard/${bardId}`,
         { question },
         config
       );
@@ -109,7 +109,7 @@ export const GetSingleAiChatAction = createAsyncThunk<
   };
   try {
     const { data } = await axios.get<Bard>(
-      `http://localhost:8000/api/v1/bard/${bardId}`,
+      `${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/bard/${bardId}`,
       config
     );
     return data;
@@ -140,7 +140,7 @@ export const GetAllAiChatsAction = createAsyncThunk<
   };
   try {
     const { data } = await axios.get<Bard>(
-      `http://localhost:8000/api/v1/bard`,
+      `${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/bard`,
       config
     );
     return data;

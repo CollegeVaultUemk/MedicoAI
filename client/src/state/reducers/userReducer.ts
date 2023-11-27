@@ -47,7 +47,7 @@ export const userRegisterAction = createAsyncThunk<
   };
   try {
     const { data } = await axios.post<User>(
-      "http://localhost:8000/api/v1/users/register",
+      `${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/users/register`,
       user,
       config
     );
@@ -78,7 +78,7 @@ export const userLoginAction = createAsyncThunk<
   };
   try {
     const { data } = await axios.post<User>(
-      "http://localhost:8000/api/v1/users/login",
+      `${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/users/login`,
       user,
       config
     );
