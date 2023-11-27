@@ -36,9 +36,9 @@ export default function Navbar() {
     <>
       <div className="flex flex-row justify-between items-center w-full h-[70px] bg-[#008080] font-Montserrat">
         <div className="pl-0 sm:pl-2 md:pl-3 lg:pl-5 min-[320px]:w-[15%] sm:w-[30%] md:w-[40%] lg:w-[50%]">
-          <div className="flex justify-center items-center gap-2.5 w-[150px]">
-            <NavLink to="/">
-              <img src={Logo} alt="logo" />
+          <div className="flex justify-center items-center gap-2.5 min-[320px]:hidden min-[400px]:flex min-[400px]:w-[100px] sm:w-[120px] max-w-[150px]">
+            <NavLink to="/" className="w-full">
+              <img src={Logo} alt="logo" className="w-full" />
             </NavLink>
           </div>
         </div>
