@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/func-components/Navigation";
 import Home from "./components/func-components/Home";
 import Medicines from "./components/func-components/Medicines";
-import Map from "./components/Map/Map";
 import Dashboard from "./components/Dashboard/Dashboard";
 import NewAIChat from "./components/Dashboard/AIChat/NewAIChat";
 import ContinueAIChat from "./components/Dashboard/AIChat/ContinueAIChat";
@@ -20,10 +19,6 @@ const router = createBrowserRouter([
           {
             index: true,
             Component: Home,
-          },
-          {
-            path: "map",
-            Component: Map,
           },
           {
             path: "medicines",
