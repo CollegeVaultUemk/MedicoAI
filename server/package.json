@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "npx tsc",
     "start:prod": "node build/src/server.js",
     "start": "node src/server.ts",
     "lint": "eslint . --ext .ts",
