@@ -5,15 +5,8 @@ import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
@@ -42,14 +35,14 @@ export default function Navbar() {
   return (
     <>
       <div className="flex flex-row justify-between items-center w-full h-[70px] bg-[#008080] font-Montserrat">
-        <div className="pl-0 sm:pl-2 md:pl-3 lg:pl-5 w-[50%]">
+        <div className="pl-0 sm:pl-2 md:pl-3 lg:pl-5 min-[320px]:w-[15%] sm:w-[30%] md:w-[40%] lg:w-[50%]">
           <div className="flex justify-center items-center gap-2.5 w-[150px]">
             <NavLink to="/">
               <img src={Logo} alt="logo" />
             </NavLink>
           </div>
         </div>
-        <ul className="sm:hidden md:flex md:flex-row justify-center items-center md:gap-7 lg:gap-15 w-[30%]">
+        <ul className="min-[320px]:hidden sm:hidden md:flex md:flex-row justify-center items-center md:gap-7 lg:gap-15 w-[30%]">
           <NavLink
             to="/"
             className="lg:min-w-[50px] text-white hover:text-black"
@@ -70,14 +63,14 @@ export default function Navbar() {
           </NavLink>
         </ul>
         {!user ? (
-          <div className="w-[20%]">
+          <div className="min-[320px]:w-[40%] lg:w-[20%]">
             <SignUpFromLogin
               onSignUp={signUpFromLogin}
               onHandleSignUp={handleSignUpFromLogin}
             >
               Sign up
             </SignUpFromLogin>
-            <div className="sm:hidden md:flex md:flex-row justify-center items-center md:gap-3 lg:gap-5 pr-0 sm:pr-2 md:pr-3 lg:pr-5">
+            <div className="min-[320px]:flex min-[320px]:justify-center min-[320px]:items-center min-[320px]:gap-3 md:flex md:flex-row justify-center items-center md:gap-3 lg:gap-5 pr-0 sm:pr-2 md:pr-3 lg:pr-5">
               <SignUp styles="lg:w-[120px] lg:min-w-[100px] md:[70px] bg-white text-[#008080] hover:text-white">
                 Try Now
               </SignUp>
@@ -85,8 +78,8 @@ export default function Navbar() {
             </div>
           </div>
         ) : (
-          <div className="w-[20%]">
-            <div className="sm:hidden md:flex md:flex-row justify-center items-center md:gap-3 lg:gap-5 pr-0 sm:pr-2 md:pr-3 lg:pr-5">
+          <div className="min-[320px]:w-[40%] lg:w-[20%]">
+            <div className="min-[320px]:flex min-[320px]:justify-center min-[320px]:items-center min-[320px]:gap-3 md:flex md:flex-row justify-center items-center md:gap-3 lg:gap-5 pr-0 sm:pr-2 md:pr-3 lg:pr-5">
               <NavLink to="/dashboard">
                 <Button
                   variant="default"
@@ -114,54 +107,16 @@ export default function Navbar() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <NavLink to="/">
+                <DropdownMenuItem>Home</DropdownMenuItem>
+              </NavLink>
+              <NavLink to="/about">
+                <DropdownMenuItem>About</DropdownMenuItem>
+              </NavLink>
+              <NavLink to="/pricing">
+                <DropdownMenuItem>Pricing</DropdownMenuItem>
+              </NavLink>
               <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  Profile
-                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Billing
-                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Settings
-                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Keyboard shortcuts
-                  <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuItem>Email</DropdownMenuItem>
-                      <DropdownMenuItem>Message</DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>More...</DropdownMenuItem>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
-                <DropdownMenuItem>
-                  New Team
-                  <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>GitHub</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuItem disabled>API</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                Log out
-                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

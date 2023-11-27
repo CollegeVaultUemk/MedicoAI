@@ -13,7 +13,9 @@ const Hero = () => {
   return (
     <div className="flex flex-col items-center px-5 md:px-10 font-Montserrat">
       <div className="my-[100px] flex flex-col items-center gap-7">
-        <h1 className="text-[50px] text-[#495641]">Get Well, Sooner</h1>
+        <h1 className="min-[320px]:text-[30px] sm:text-[50px] text-[#495641]">
+          Get Well, Sooner
+        </h1>
         <p className="text-[20px] max-w-[70%] text-center text-[#495641]">
           Revolutionary healthcare app that merges AI and real doctors for
           comprehensive consultations.
