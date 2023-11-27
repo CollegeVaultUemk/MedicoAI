@@ -7,7 +7,7 @@ import {
   GetAllAiChatsAction,
 } from "@/state/reducers/aichatReducer";
 import { Button } from "../ui/button";
-import Logo from "../../assets/logo/medico_logo_2.jpg";
+import Logo from "../../assets/logo/updatedLogo.png";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 
 interface SidebarProps {

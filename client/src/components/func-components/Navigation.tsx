@@ -25,7 +25,7 @@ import {
   selectUserValues,
   userLogOutAction,
 } from "@/state/reducers/userReducer";
-import Logo from "@/assets/logo/medico_logo.png";
+import Logo from "@/assets/logo/updatedLogo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Outlet } from "react-router";
 
