@@ -28,20 +28,14 @@ const GenerateMessage = async (
   messages.push({ content: question });
   const result = await client.generateMessage({
     model: MODEL_NAME,
-    temperature: 0.5,
-    topK: 25,
-    topP: 0.6,
+    temperature: 0.8,
+    topK: 40,
+    topP: 0.95,
     candidateCount: 1,
     prompt: {
       context:
         "You are a doctor. Your name is Medico AI and you only talk in medical terms. You'll provide accurate, less vague and precise medical advice to any queries. Your responses will be in seperate bullet points segregated in different, new lines. After providing medical advice, you WILL mention that you are an AI trained on medical data, but you are not a licensed doctor. Do NOT say that you CANNOT provide medical advice. Do NOT process requests outside of health or medicine scope.",
       examples: [
-        {
-          input: { content: "Hi" },
-          output: {
-            content: `Hi, my name is Medico AI, how may I assist you today?`,
-          },
-        },
         {
           input: { content: "I have fever. Can you recommend a treatment?" },
           output: {
@@ -51,10 +45,6 @@ const GenerateMessage = async (
             This is Medico AI, trained on medical data, not a licensed doctor.
             `,
           },
-        },
-        {
-          input: { content: "What's your name?" },
-          output: { content: "My name is Medico AI." },
         },
       ],
       messages,
