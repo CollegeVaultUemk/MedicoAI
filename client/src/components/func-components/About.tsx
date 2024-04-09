@@ -50,27 +50,6 @@ export default function About() {
       linkedin: "javascript:void(0)",
       twitter: "https://pratyakshm.com/x",
     },
-    {
-      avatar: "https://i.imgur.com/46IHGqW.jpg",
-      name: "Srijita Biswas",
-      title: "Lead powerpoint presenter",
-      linkedin: "javascript:void(0)",
-      twitter: "javascript:void(0)",
-    },
-    {
-      avatar: "https://i.imgur.com/KHMaIFy.png",
-      name: "Vedatrayi Banerjee",
-      title: "survey lead/ report",
-      linkedin: "javascript:void(0)",
-      twitter: "javascript:void(0)",
-    },
-    {
-      avatar: "https://i.imgur.com/4oT8ztr.jpg",
-      name: "Amaan Rasool",
-      title: "Logo designer",
-      linkedin: "https://www.linkedin.com/in/-amaanrasool-/",
-      twitter: "https://twitter.com/Amaanrasool6543",
-    },
   ];
 
   const contactMethods = [
