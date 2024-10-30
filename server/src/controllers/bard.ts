@@ -5,6 +5,7 @@ import Bard from "../models/Bard";
 import User from "../models/User";
 import GenerateMessage from "../../utils/bardapi";
 import { StatusCodes } from "http-status-codes";
+import { generateChatName } from "../../utils/generateChatname";
 
 interface AuthRequest extends Request {
   user?: { _id: ObjectId };
@@ -18,9 +19,10 @@ export const NewBardChatCtrl = async (req: AuthRequest, res: Response) => {
       .json({ success: false, message: "No question provided" });
   }
   const answer = await GenerateMessage(question, []);
+  const chatName = await generateChatName(question, answer);
   try {
     const newChat = await Bard.create({
-      chat: [{ question, answer }],
+      chat: [{ chatName, question, answer }],
       user: req.user?._id,
     });
     await User.findByIdAndUpdate(req.user?._id, {
@@ -49,8 +51,9 @@ export const ContinueBardChatCtrl = async (req: AuthRequest, res: Response) => {
       .json({ success: false, message: "No question provided" });
   }
   const answer = await GenerateMessage(question, foundChats.chat);
+  const chatName = foundChats.chat[0].chatName;
   try {
-    foundChats.chat.push({ question, answer });
+    foundChats.chat.push({ chatName, question, answer });
     await foundChats.save();
     return res.status(StatusCodes.OK).json({ success: true, data: foundChats });
   } catch (error: any) {

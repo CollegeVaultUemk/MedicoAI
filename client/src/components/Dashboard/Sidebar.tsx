@@ -229,13 +229,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                       (isActive && "!text-white bg-slate-600")
                                     }
                                   >
-                                    {chats.chat[0].question.split(" ").length >
+                                    {chats.chat[0].chatName.split(" ").length >
                                     3
-                                      ? chats.chat[0].question
+                                      ? chats.chat[0].chatName
                                           .split(" ")
                                           .slice(0, 3)
                                           .join(" ") + "..."
-                                      : chats.chat[0].question}
+                                      : chats.chat[0].chatName}
                                   </NavLink>
                                 </li>
                               ))}

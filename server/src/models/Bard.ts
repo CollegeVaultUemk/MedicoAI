@@ -2,6 +2,7 @@ import { Schema, model, ObjectId } from "mongoose";
 
 interface IBard {
   chat: {
+    chatName: string | null | undefined;
     question: string | null | undefined;
     answer: string | null | undefined;
   }[];
@@ -12,6 +13,7 @@ const bardSchema = new Schema<IBard>(
   {
     chat: [
       {
+        chatName: String,
         question: String,
         answer: String,
       },
