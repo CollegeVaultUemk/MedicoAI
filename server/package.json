@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "start:prod": "node ./build/src/server.js",
-    "start": "node src/server.ts",
+    "start": "nodemon src/server.ts",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,6 +15,9 @@
   "license": "ISC",
   "dependencies": {
     "@google-ai/generativelanguage": "^1.1.0",
+    "@langchain/community": "^0.3.11",
+    "@langchain/core": "^0.3.16",
+    "@langchain/openai": "^0.3.11",
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.41.0",
@@ -27,7 +30,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.3",
     "nodemailer": "^6.9.5",
-    "streamifier": "^0.1.1"
+    "streamifier": "^0.1.1",
+    "together-ai": "^0.6.0-alpha.4"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.4",

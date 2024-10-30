@@ -9,4 +9,5 @@ export default cleanEnv(process.env, {
   PASS: str(),
   GOOGLE_MAPS_API_KEY: str(),
   BARD_API_KEY: str(),
+  OPENAI_API_KEY: str(),
 });
