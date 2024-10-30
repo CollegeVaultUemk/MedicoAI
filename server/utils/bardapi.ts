@@ -1,6 +1,10 @@
 import { PromptTemplate } from "@langchain/core/prompts";
-import { llm } from "./keys";
+import { combineDocs, llm, vectorStore } from "./keys";
 import { StringOutputParser } from "@langchain/core/output_parsers";
+import {
+  RunnablePassthrough,
+  RunnableSequence,
+} from "@langchain/core/runnables";
 
 const formatConvoHistory = (chats: any) => {
   return chats
@@ -20,6 +24,7 @@ export const GenerateMessage = async (
     answer: string | null | undefined;
   }[]
 ) => {
+  const retriever = vectorStore.asRetriever();
   const AiPromptTemplate = `
    You are TherapistAi, an AI trained specifically in therapy-related matters. Using the user's question and relevant context from previous chats, provide precise, clinically-informed responses that maintain accuracy and avoid vagueness.
    Structure each response in distinct bullet points, with each point on a new line to ensure clarity.
@@ -31,8 +36,10 @@ export const GenerateMessage = async (
    Only greet the user if no previous greeting exists in the context.
 
    Remain strictly within the scope of therapy, mental health, and psychological well-being, using previous conversations to provide nuanced, contextually appropriate responses.
-
+   You also are trained on a lot of psychotherapy materials and thus you also have a knowledge base of your own. Try to answer the user's questions or advice them using the context from your own knowledge base as well.
+   
    User question: {question}
+   Context from own knowledge base : {knowledge}
    Context from Previous Chats: {prevChats}
 
    Generated Response:
@@ -42,10 +49,16 @@ export const GenerateMessage = async (
     .pipe(llm)
     .pipe(new StringOutputParser());
 
-  const response = await AiPromptChain.invoke({
-    question,
-    prevChats: formatConvoHistory(prevChats),
-  });
+  const chain = RunnableSequence.from([
+    {
+      knowledge: retriever.pipe(combineDocs),
+      question: () => question,
+      prevChats: () => formatConvoHistory(prevChats),
+    },
+    AiPromptChain,
+  ]);
+
+  const response = await chain.invoke(question as string);
 
   return response;
 };
