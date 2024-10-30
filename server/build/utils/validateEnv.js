@@ -10,4 +10,5 @@ exports.default = (0, envalid_1.cleanEnv)(process.env, {
     PASS: (0, validators_1.str)(),
     GOOGLE_MAPS_API_KEY: (0, validators_1.str)(),
     BARD_API_KEY: (0, validators_1.str)(),
+    OPENAI_API_KEY: (0, validators_1.str)(),
 });

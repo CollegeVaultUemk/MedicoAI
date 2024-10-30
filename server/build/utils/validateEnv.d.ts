@@ -6,5 +6,6 @@ declare const _default: Readonly<{
     PASS: string;
     GOOGLE_MAPS_API_KEY: string;
     BARD_API_KEY: string;
+    OPENAI_API_KEY: string;
 } & import("envalid").CleanedEnvAccessors>;
 export default _default;

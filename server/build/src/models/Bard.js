@@ -4,6 +4,7 @@ const mongoose_1 = require("mongoose");
 const bardSchema = new mongoose_1.Schema({
     chat: [
         {
+            chatName: String,
             question: String,
             answer: String,
         },
