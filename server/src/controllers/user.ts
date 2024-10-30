@@ -2,7 +2,6 @@ import User from "../models/User";
 import asyncHandler from "../middleware/async";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError, UnAuthenticatedError } from "../errors";
-import env from "../../utils/validateEnv";
 import transporter, { MailOptions } from "../../utils/nodemailer";
 import crypto from "crypto";
 
@@ -76,7 +75,7 @@ export const forgotPasswordCtrl = asyncHandler(async (req, res) => {
     "host"
   )}/api/v1/users/reset-password/${resetToken}">Click here</a>`;
   const message: MailOptions = {
-    from: env.EMAIL,
+    from: process.env.EMAIL as string,
     to: email,
     subject: "Reset Password",
     html: resetUrl,

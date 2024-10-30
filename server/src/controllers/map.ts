@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import axios from "axios";
-import env from "../../utils/validateEnv";
 
 export const getNearbyPlacesCtrl = async (req: Request, res: Response) => {
   const { location, radius, type } = req.body;
-  const apiKey = env.GOOGLE_MAPS_API_KEY;
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY;
   try {
     const { data } = await axios.get(
       `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.lat},${location.lng}&radius=${radius}&type=${type}&key=${apiKey}`
@@ -17,7 +16,7 @@ export const getNearbyPlacesCtrl = async (req: Request, res: Response) => {
 
 export const getPlacesPhotoCtrl = async (req: Request, res: Response) => {
   const { photoRef } = req.body;
-  const apiKey = env.GOOGLE_MAPS_API_KEY;
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY;
   try {
     const { data } = await axios.get(
       `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photoRef}&key=${apiKey}`,

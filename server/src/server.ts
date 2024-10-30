@@ -1,9 +1,8 @@
 import "dotenv/config";
 import app from "./app";
-import env from "../utils/validateEnv";
 import mongoose from "mongoose";
 
-const port = env.PORT;
+const port = process.env.PORT;
 
 const appStart = async (): Promise<void> => {
   try {

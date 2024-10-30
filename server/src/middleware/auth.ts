@@ -1,4 +1,3 @@
-import env from "../../utils/validateEnv";
 import { Response, Request, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import User from "../models/User";
@@ -22,7 +21,10 @@ const authMiddleware = async (
   }
   try {
     const token = authHeader.split(" ")[1];
-    const decoded = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET as string
+    ) as JwtPayload;
     const user = await User.findById(decoded.id);
     if (!user) {
       return res.status(StatusCodes.UNAUTHORIZED).json({

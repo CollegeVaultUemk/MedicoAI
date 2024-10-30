@@ -1,6 +1,4 @@
 import nodemailer, { Transporter } from "nodemailer";
-import env from "../utils/validateEnv";
-
 interface MailOptions {
   from: string;
   to: string;
@@ -13,8 +11,8 @@ const transporter: Transporter = nodemailer.createTransport({
   service: "gmail",
   secure: true,
   auth: {
-    user: env.EMAIL,
-    pass: env.PASS,
+    user: process.env.EMAIL,
+    pass: process.env.PASS,
   },
 });
 

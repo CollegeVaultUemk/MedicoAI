@@ -1,7 +1,6 @@
 import { Schema, model, Model, ObjectId } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import env from "../../utils/validateEnv";
 import crypto from "crypto";
 
 interface IUser {
@@ -78,7 +77,7 @@ userSchema.methods.matchPassword = async function (
 };
 
 userSchema.methods.generateToken = function (): string {
-  return jwt.sign({ id: this._id }, env.JWT_SECRET, {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET as string, {
     expiresIn: "30d",
   });
 };
