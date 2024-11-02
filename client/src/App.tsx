@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Navbar from "./components/func-components/Navigation";
+// import Navbar from "./components/func-components/Navigation";
 import Home from "./components/func-components/Home";
 // import Medicines from "./components/func-components/Medicines";
 import Dashboard from "./components/Dashboard/Dashboard";
