@@ -5,6 +5,7 @@ import {
   ContinueBardChatCtrl,
   GetAllChatsCtrl,
   GetSingleBardChatCtrl,
+  MentalHealthAnalysis,
   NewBardChatCtrl,
 } from "../controllers/bard";
 
@@ -14,4 +15,5 @@ router
   .put(authMiddleware, ContinueBardChatCtrl);
 router.route("/create-chat").post(authMiddleware, NewBardChatCtrl);
 router.route("/").get(authMiddleware, GetAllChatsCtrl);
+router.route("/analysis").post(authMiddleware, MentalHealthAnalysis);
 export default router;
