@@ -15,6 +15,7 @@ module.exports = {
     fontFamily: {
       satoshi: ["Satoshi", "sans-serif"],
       Montserrat: ["Montserrat", "sans-serif"],
+      instrument: ['"Instrument Serif"', "serif"],
     },
     container: {
       center: true,
