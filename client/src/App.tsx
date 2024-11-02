@@ -1,17 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/func-components/Navigation";
 import Home from "./components/func-components/Home";
-import Medicines from "./components/func-components/Medicines";
+// import Medicines from "./components/func-components/Medicines";
 import Dashboard from "./components/Dashboard/Dashboard";
 import NewAIChat from "./components/Dashboard/AIChat/NewAIChat";
 import ContinueAIChat from "./components/Dashboard/AIChat/ContinueAIChat";
 import About from "./components/func-components/About";
 import Pricing from "./components/func-components/Pricing";
-import ComingSoon from "./components/func-components/ComingSoon";
+// import ComingSoon from "./components/func-components/ComingSoon";
 
 const router = createBrowserRouter([
   {
-    Component: Navbar,
+    // Component: Navbar,
     children: [
       {
         path: "/",
@@ -21,20 +21,12 @@ const router = createBrowserRouter([
             Component: Home,
           },
           {
-            path: "medicines",
-            Component: Medicines,
-          },
-          {
             path: "about",
             Component: About,
           },
           {
             path: "pricing",
             Component: Pricing,
-          },
-          {
-            path: "construction",
-            Component: ComingSoon,
           },
         ],
       },
@@ -58,7 +50,7 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <div>
+    <div className="h-auto">
       <RouterProvider router={router} />
     </div>
   );
