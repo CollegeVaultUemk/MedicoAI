@@ -46,7 +46,7 @@ const Analysis = () => {
             {reportAppErr || reportServerErr}
           </p>
         )}
-        {report && report.message === "You have not generated any report !" ? (
+        {!report ? (
           <div className="px-4 mx-auto text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-36">
             <span className="font-semibold text-gray-400 uppercase">
               What Metrics We Provide

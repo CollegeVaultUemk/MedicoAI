@@ -24,6 +24,7 @@ import { DialogClose } from "@radix-ui/react-dialog";
 interface LoginProps {
   children: ReactNode;
   onHandleSignUp?: () => void;
+  styles?: string;
 }
 
 const loginSchema = Yup.object({
@@ -31,7 +32,11 @@ const loginSchema = Yup.object({
   password: Yup.string().required("Password is Required"),
 });
 
-export default function Login({ children, onHandleSignUp }: LoginProps) {
+export default function Login({
+  children,
+  onHandleSignUp,
+  styles,
+}: LoginProps) {
   const dispatch = useAppDispatch();
   const userValues = useAppSelector(selectUserValues);
   const navigate = useNavigate();
@@ -53,7 +58,7 @@ export default function Login({ children, onHandleSignUp }: LoginProps) {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="lg:w-[80px] lg:min-w-[60px] md:w-[70px] text-white"
+          className={`${styles} lg:w-[80px] lg:min-w-[60px] md:w-[70px]`}
         >
           {children}
         </Button>

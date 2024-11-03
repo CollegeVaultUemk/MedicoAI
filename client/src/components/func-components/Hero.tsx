@@ -1,5 +1,8 @@
-import { useAppSelector } from "@/state/hooks";
-import { selectUserValues } from "@/state/reducers/userReducer";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
+import {
+  selectUserValues,
+  userLogOutAction,
+} from "@/state/reducers/userReducer";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
@@ -11,12 +14,25 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import SignUp from "./Signup";
+import { useState } from "react";
+import SignUpFromLogin from "./SignUpFromLogin";
+import Login from "./Login";
 // import { Link } from "react-router-dom";
 // import video from "../../assets/videos/medicoai.mp4";
 
 const Hero = () => {
+  const dispatch = useAppDispatch();
   const userValues = useAppSelector(selectUserValues);
   const { user } = userValues;
+  const [signUpFromLogin, setAuthSignUpFromLogin] = useState<boolean>(false);
+
+  const handleSignUpFromLogin = () => {
+    setAuthSignUpFromLogin(!signUpFromLogin);
+  };
+
+  const logOutHandler = () => {
+    dispatch(userLogOutAction({}));
+  };
 
   return (
     <div
@@ -49,18 +65,43 @@ const Hero = () => {
         </div>
         <div>
           {user ? (
-            <NavLink to="/dashboard">
+            <div className="flex gap-2">
+              <NavLink to="/dashboard">
+                <Button
+                  variant="default"
+                  className="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
+                >
+                  Talk Now
+                </Button>
+              </NavLink>
               <Button
                 variant="default"
+                onClick={logOutHandler}
                 className="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
               >
-                Talk Now
+                Log Out
               </Button>
-            </NavLink>
+            </div>
           ) : (
-            <SignUp styles="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50">
-              Try for Free
-            </SignUp>
+            <>
+              <SignUpFromLogin
+                onSignUp={signUpFromLogin}
+                onHandleSignUp={handleSignUpFromLogin}
+              >
+                Sign up
+              </SignUpFromLogin>
+              <div className="min-[320px]:flex min-[320px]:justify-center min-[320px]:items-center min-[320px]:gap-3 md:flex md:flex-row justify-center items-center md:gap-3 lg:gap-5 pr-0 sm:pr-2 md:pr-3 lg:pr-5">
+                <SignUp styles="lg:w-[120px] lg:min-w-[100px] md:[70px] text-[#008080 bg-[#56C1FA] text-slate-700 border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50">
+                  Try For Free
+                </SignUp>
+                <Login
+                  styles="bg-[#56C1FA] text-black border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
+                  onHandleSignUp={handleSignUpFromLogin}
+                >
+                  Login
+                </Login>
+              </div>
+            </>
           )}
         </div>
       </div>
