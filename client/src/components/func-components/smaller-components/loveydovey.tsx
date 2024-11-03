@@ -8,7 +8,9 @@ interface LoveyDoveyProps {
 const LoveyDovey = ({ heading, description }: LoveyDoveyProps) => {
   return (
     <div
-      className={cn("flex flex-col gap-10 items-center font-instrument w-1/3")}
+      className={cn(
+        "flex xs:w-full lg:w-1/3 flex-col gap-10 items-center font-instrument w-1/3"
+      )}
     >
       {/* lovey dovey image */}
       <div className="border-4 rounded-3xl h-auto w-auto p-2">

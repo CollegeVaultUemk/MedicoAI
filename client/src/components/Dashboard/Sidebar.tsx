@@ -7,7 +7,6 @@ import {
   GetAllAiChatsAction,
 } from "@/state/reducers/aichatReducer";
 import { Button } from "../ui/button";
-import Logo from "../../assets/logo/updatedLogo.png";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 
 interface SidebarProps {
@@ -86,8 +85,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <NavLink to="/">
-          <img src={Logo} alt="Logo" />
+        <NavLink
+          to="/"
+          className="flex mt-4 justify-center items-center w-full text-center"
+        >
+          <h1 className="text-[36px] text-white font-bold">Serenity</h1>
         </NavLink>
 
         <button
@@ -210,9 +212,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 </svg>
                                 <div>New Chat</div>
                               </Button>
-                              <div className="w-[15%] h-[35px] border rounded-md border-white">
-                                <div className="w-[0.5px] h-full ml-[65%] border-[0.5px] border-white"></div>
-                              </div>
                             </NavLink>
                           </li>
                           <div className="mt-4 flex flex-col gap-2.5 pl-6 max-h-[50vh] overflow-y-scroll">

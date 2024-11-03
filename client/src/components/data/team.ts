@@ -11,7 +11,7 @@ export const team = [
       "https://pbs.twimg.com/profile_images/1630675621675245568/eX5rf-P4_400x400.jpg",
     name: "Swapnil Sarkar",
     title: "Fullstack Developer",
-    linkedin: "https://www.linkedin.com/in/swapnil-sarkar1202/",
+    linkedin: "https://www.linkedin.com/in/swapnilskr/",
     twitter: "https://twitter.com/Swapnil43794138",
   },
   {
@@ -19,7 +19,7 @@ export const team = [
       "https://pbs.twimg.com/profile_images/1717214266665934848/BZ2ub9zt_400x400.jpg",
     name: "Pratyaksh Mehrotra",
     title: "Designer",
-    linkedin: "javascript:void(0)",
+    linkedin: "https://www.linkedin.com/in/pratyakshm/",
     twitter: "https://pratyakshm.com/x",
   },
 ];

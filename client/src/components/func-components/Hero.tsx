@@ -9,7 +9,6 @@ import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
@@ -17,8 +16,7 @@ import SignUp from "./Signup";
 import { useState } from "react";
 import SignUpFromLogin from "./SignUpFromLogin";
 import Login from "./Login";
-// import { Link } from "react-router-dom";
-// import video from "../../assets/videos/medicoai.mp4";
+import Logo from "../../assets/logo/newLogo.png";
 
 const Hero = () => {
   const dispatch = useAppDispatch();
@@ -38,10 +36,12 @@ const Hero = () => {
     <div
       className={`flex flex-col items-center px-5 md:px-0 bg-slate-600 h-screen bg-[url('@/assets/hero.jpeg')] bg-cover bg-center font-instrument font-semibold`}
     >
-      <div className="flex flex-row max-md::flex-col max-md:justify-start justify-between bg-gradient-to-t from-transparent to-[#F6FDFF] w-full items-start pt-10 h-100 px-10">
-        <div>logo</div>
+      <div className="flex flex-row max-md::flex-col max-md:justify-between justify-between items-center bg-gradient-to-t from-transparent to-[#F6FDFF] w-full pt-10 h-40 px-10 mb-[50px]">
+        <NavLink to="/" className="xs:w-20 sm:w-30 lg:w-40">
+          <img src={Logo} alt="logo" />
+        </NavLink>
         <div
-          className="hidden md:flex flex-row gap-10 w-80 text-slate-600 justify-center font-normal
+          className="hidden md:flex flex-row gap-10 w-80 text-slate-600 justify-center items-center font-normal
          text-lg"
         >
           <a
@@ -52,7 +52,7 @@ const Hero = () => {
           </a>
           <a
             className={`hover:cursor-pointer hover:scale-105 hover:text-black`}
-            href={`#about`}
+            href={`#team`}
           >
             Team
           </a>
@@ -63,7 +63,7 @@ const Hero = () => {
             The Mission
           </a>
         </div>
-        <div>
+        <div className="xs:hidden md:block">
           {user ? (
             <div className="flex gap-2">
               <NavLink to="/dashboard">
@@ -104,6 +104,42 @@ const Hero = () => {
             </>
           )}
         </div>
+        <div className="xs:block md:hidden">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                <GiHamburgerMenu size={23} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56 flex flex-col gap-y-2 p-3">
+              <a href="#">Home</a>
+              <a href="#team">Team</a>
+              <a href="#about">The Mission / pricing</a>
+              {user ? (
+                <>
+                  <NavLink to="/dashboard">Talk Now</NavLink>
+                  <div onClick={logOutHandler}>Log Out</div>
+                </>
+              ) : (
+                <>
+                  <SignUpFromLogin
+                    onSignUp={signUpFromLogin}
+                    onHandleSignUp={handleSignUpFromLogin}
+                  >
+                    Sign up
+                  </SignUpFromLogin>
+
+                  <SignUp noStyle={true}>Try For Free</SignUp>
+
+                  <Login noStyle={true} onHandleSignUp={handleSignUpFromLogin}>
+                    Login
+                  </Login>
+                </>
+              )}
+              <DropdownMenuSeparator />
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
       {/* mid section */}
       <div className="flex flex-row max-md::flex-col max-md:justify-start w-full items-center justify-center h-[75%] px-2">
@@ -113,7 +149,7 @@ const Hero = () => {
               Private. NO paywalls, free forever, Loved by 50k+ hoomans
             </span>
           </div>
-          <div className="lg:scale-[2] scale-150 flex flex-col items-center gap-1 [text-shadow:1px_1px_1px_gray] font-medium">
+          <div className="lg:scale-[2] xs:scale-100 xsm:scale-150 flex flex-col items-center gap-1 [text-shadow:1px_1px_1px_gray] font-medium">
             <div>
               <span className="italic">{`Everyone `}</span>
               <span>deserves a better mental health.</span>
@@ -131,7 +167,7 @@ const Hero = () => {
               <NavLink to={`/dashboard`}>
                 <Button
                   variant="default"
-                  className="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
+                  className="bg-[#56C1FA] text-[12px] xsm:text-[16px] text-slate-700 w-[80px] xsm:w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
                 >
                   Talk Now
                 </Button>
@@ -147,29 +183,6 @@ const Hero = () => {
 
       {/* bottom section */}
       <div className="flex flex-row max-md::flex-col max-md:justify-start justify-between bg-gradient-to-t from-[#F6FDFF] to-transparent w-full items-center h-150 px-2"></div>
-
-      {/* =======mobile menu======= */}
-      <div className="md:hidden pr-0 sm:pr-2">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline">
-              <GiHamburgerMenu size={23} />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            <NavLink to="/">
-              <DropdownMenuItem>Home</DropdownMenuItem>
-            </NavLink>
-            <NavLink to="/about">
-              <DropdownMenuItem>Team</DropdownMenuItem>
-            </NavLink>
-            <NavLink to="/pricing">
-              <DropdownMenuItem>The Mission / pricing</DropdownMenuItem>
-            </NavLink>
-            <DropdownMenuSeparator />
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
     </div>
   );
 };

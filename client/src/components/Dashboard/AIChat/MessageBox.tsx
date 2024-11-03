@@ -35,7 +35,7 @@ const MessageBox = ({ children, messageType }: MessageProps) => {
           messageType === "user"
             ? MessageTypeStyle.user.boxColor
             : MessageTypeStyle.ai.boxColor
-        } border-gray-300 dark:border-gray-600 rounded-md py-3 px-3 max-w-[75%]`}
+        } border-gray-300 dark:border-gray-600 rounded-md py-3 px-3 xs:max-w-[95%] md:max-w-[85%] lg:max-w-[75%]`}
       >
         <p>{children}</p>
       </div>

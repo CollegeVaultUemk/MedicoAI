@@ -29,7 +29,7 @@ const UserInput = ({ setUserInput, bardId }: UserInputProps) => {
 
   return (
     <form
-      className="px-15 flex justify-center items-center gap-1"
+      className="xs:px-2 md:px-15 flex justify-center items-center gap-1"
       onSubmit={handleSubmit}
     >
       <Input

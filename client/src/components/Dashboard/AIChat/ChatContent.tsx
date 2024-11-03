@@ -25,7 +25,7 @@ const ChatContent = ({ userInput }: ChatContentProps) => {
   }, [aiChat, loading, navigate]);
 
   return (
-    <div className="px-15 flex flex-col gap-10 overflow-y-scroll">
+    <div className="xs:px-2 md:px-15 flex flex-col gap-10 overflow-y-scroll">
       <MessageBox messageType="user">{userInput}</MessageBox>
       <p>Thinking...</p>
     </div>

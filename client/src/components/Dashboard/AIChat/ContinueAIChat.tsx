@@ -49,7 +49,7 @@ const ContinueAIChat = () => {
     <div className="flex flex-col justify-between h-[83vh]">
       <div
         ref={chatRef}
-        className="px-15 py-15 flex flex-col gap-10 overflow-y-scroll"
+        className="xs:px-2 xs:py-2 md:px-15 md:py-15 flex flex-col gap-10 overflow-y-scroll"
       >
         {chatArray.length > 0 &&
           chatArray.map((chat, index) => (

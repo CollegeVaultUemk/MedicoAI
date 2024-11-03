@@ -5,20 +5,20 @@ type ExampleTypes = {
 
 const Examples: ExampleTypes = [
   {
-    heading: "Catch your symptoms ?",
-    prompt: "for something",
+    heading: "Identify Your Emotional Triggers",
+    prompt: "What could be causing my recent stress?",
   },
   {
-    heading: "Ask medico",
-    prompt: "The best medicine for fever ?",
+    heading: "Ask Serenity",
+    prompt: "How can I cope with anxiety in social situations?",
   },
   {
-    heading: "medico recommends",
-    prompt: "Best medicine for headaches ?",
+    heading: "Serenity Recommends",
+    prompt: "What are some techniques to improve my mood?",
   },
   {
-    heading: "medico is here to help",
-    prompt: "The best medicine for diarrhea ?",
+    heading: "Serenity Is Here to Support",
+    prompt: "How can I manage feelings of overwhelm effectively?",
   },
 ];
 
@@ -32,16 +32,16 @@ const ChatHeader = () => {
           Chat with our AI
         </h3>
         <p className={`mt-3 text-gray-600 dark:text-gray-300`}>
-          Get comprehensive consultations from our AI chat bot MEDICO 🚀 !.
+          Get comprehensive consultations from our AI chat bot SERENITY 🚀 !.
         </p>
         <div className="mt-12 flex justify-center">
           <ul className="inline-grid grid-cols-2 gap-x-10 gap-y-6 md:gap-x-16 pb-18">
             {Examples.map((example, idx) => (
               <li
                 key={idx}
-                className="border border-gray-400 rounded-md flex flex-col justify-start items-center"
+                className="border text-[14px] border-gray-300 rounded-lg shadow-lg flex flex-col justify-start items-center p-4"
               >
-                <h4 className="mt-1">{example.heading}</h4>
+                <h4 className="mt-1 font-bold">{example.heading}</h4>
                 <p>{example.prompt}</p>
               </li>
             ))}

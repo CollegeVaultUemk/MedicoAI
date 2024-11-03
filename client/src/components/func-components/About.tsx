@@ -33,7 +33,7 @@ export default function About() {
       </div>
 
       {/* team cards */}
-      <div className="mt-20 pt-20 flex flex-col gap-20 items-center">
+      <div id="team" className="mt-20 pt-20 flex flex-col gap-20 items-center">
         <div
           className="flex flex-row gap-2 border-2 rounded-2xl py-2 px-6 bg-gradient-to-tl from-transparent to-[#F6FDFF] shadow-lg shadow-black/10
         
@@ -46,7 +46,7 @@ export default function About() {
             Meet The Team
           </span>
         </div>
-        <div className="flex lg:flex-row flex-col gap-30 w-full px-30 justify-between">
+        <div className="flex lg:flex-row flex-col gap-30 w-full xs:px-2 md:px-30 justify-between">
           {team.map((member, index) => (
             <TeamMemCard
               key={index}

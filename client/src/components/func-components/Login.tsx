@@ -25,6 +25,7 @@ interface LoginProps {
   children: ReactNode;
   onHandleSignUp?: () => void;
   styles?: string;
+  noStyle?: boolean;
 }
 
 const loginSchema = Yup.object({
@@ -36,6 +37,7 @@ export default function Login({
   children,
   onHandleSignUp,
   styles,
+  noStyle,
 }: LoginProps) {
   const dispatch = useAppDispatch();
   const userValues = useAppSelector(selectUserValues);
@@ -56,12 +58,16 @@ export default function Login({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className={`${styles} lg:w-[80px] lg:min-w-[60px] md:w-[70px]`}
-        >
-          {children}
-        </Button>
+        {noStyle ? (
+          <div>{children}</div>
+        ) : (
+          <Button
+            variant="outline"
+            className={`${styles} lg:w-[80px] lg:min-w-[60px] md:w-[70px]`}
+          >
+            {children}
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={formik.handleSubmit}>

@@ -21,6 +21,7 @@ import { ReactNode } from "react";
 interface LoginProps {
   children: ReactNode;
   styles?: string;
+  noStyle?: boolean;
 }
 
 const loginSchema = Yup.object({
@@ -30,7 +31,7 @@ const loginSchema = Yup.object({
   password: Yup.string().required("Password is Required"),
 });
 
-export default function SignUp({ children, styles }: LoginProps) {
+export default function SignUp({ children, styles, noStyle }: LoginProps) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userValues = useAppSelector(selectUserValues);
@@ -52,9 +53,13 @@ export default function SignUp({ children, styles }: LoginProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="default" className={styles}>
-          {children}
-        </Button>
+        {noStyle ? (
+          <div>{children}</div>
+        ) : (
+          <Button variant="default" className={styles}>
+            {children}
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={formik.handleSubmit}>
