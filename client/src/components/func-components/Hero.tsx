@@ -55,7 +55,7 @@ const Hero = () => {
               </Button>
             </NavLink>
           ) : (
-            <SignUp styles="bg-[#008080] text-white w-[200px] mb-10">
+            <SignUp styles="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50">
               Try for Free
             </SignUp>
           )}
@@ -75,14 +75,20 @@ const Hero = () => {
             </span>
           </div>
           <div className="items-center h-auto w-auto scale-150">
-            <NavLink to={`/dashboard`}>
-              <Button
-                variant="default"
-                className="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
-              >
-                Talk Now
-              </Button>
-            </NavLink>
+            {user ? (
+              <NavLink to={`/dashboard`}>
+                <Button
+                  variant="default"
+                  className="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
+                >
+                  Talk Now
+                </Button>
+              </NavLink>
+            ) : (
+              <SignUp styles="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50">
+                Try for Free
+              </SignUp>
+            )}
           </div>
         </div>
       </div>
