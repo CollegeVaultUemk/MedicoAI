@@ -35,9 +35,10 @@ const authMiddleware = async (
     req.user = user;
     next();
   } catch (error) {
+    console.log("error", error);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
-      message: "Something went wrong",
+      error,
     });
   }
 };

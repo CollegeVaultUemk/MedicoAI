@@ -2,9 +2,9 @@ import { CSSProperties } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
 interface SpinnerProps {
-  color: string;
-  loading: boolean;
-  size: number;
+  color?: string;
+  loading?: boolean;
+  size?: number;
 }
 
 const override: CSSProperties = {

@@ -122,7 +122,8 @@ export const MentalHealthAnalysis = async (req: AuthRequest, res: Response) => {
       if (AllUserChats.length === 0) {
         return res.status(StatusCodes.BAD_REQUEST).json({
           success: "false",
-          message: "You have no chats with Therapist AI !",
+          message:
+            "You have no chats with Serenity ! Chat Now in order to generate a report !",
         });
       }
       const cleanedChats = AllUserChats.map((chat) => {
@@ -131,7 +132,7 @@ export const MentalHealthAnalysis = async (req: AuthRequest, res: Response) => {
           answer: chat?.answer,
         };
       });
-      let MHAReport: {};
+      let MHAReport: {} | null;
       const prevAnalysisExists = await Report.findOne({ user: user?._id });
       const mostRecentChatDate = chatsUpdateDates
         .filter((date): date is Date => date !== undefined)
@@ -145,16 +146,16 @@ export const MentalHealthAnalysis = async (req: AuthRequest, res: Response) => {
         MHAReport = prevAnalysisExists;
         return res.status(StatusCodes.OK).json({
           success: true,
-          MHAReport,
+          report: MHAReport,
         });
       } else {
         try {
-          MHAReport = await GenerateMHA(cleanedChats);
-          prevAnalysisExists
+          const normalMHAReport = await GenerateMHA(cleanedChats);
+          MHAReport = prevAnalysisExists
             ? await Report.findByIdAndUpdate(prevAnalysisExists._id, {
-                ...MHAReport,
+                ...normalMHAReport,
               })
-            : await Report.create({ ...MHAReport, user: user._id });
+            : await Report.create({ ...normalMHAReport, user: user._id });
         } catch (error) {
           console.log("error generating report", error);
           return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -164,7 +165,7 @@ export const MentalHealthAnalysis = async (req: AuthRequest, res: Response) => {
         }
         return res.status(StatusCodes.OK).json({
           success: true,
-          MHAReport,
+          report: MHAReport,
         });
       }
     }
@@ -174,6 +175,31 @@ export const MentalHealthAnalysis = async (req: AuthRequest, res: Response) => {
     });
   } catch (error) {
     console.log("Error in mental health analysis : ", error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      error,
+    });
+  }
+};
+
+export const getUsersMHAReport = async (req: AuthRequest, res: Response) => {
+  try {
+    const { user } = req;
+    const MHAReportUser = await Report.findOne({
+      user: user?._id,
+    });
+    if (!MHAReportUser) {
+      return res.status(StatusCodes.OK).json({
+        success: "false",
+        message: "You have not generated any report !",
+      });
+    }
+    return res.status(StatusCodes.OK).json({
+      success: "true",
+      report: MHAReportUser,
+    });
+  } catch (error) {
+    console.log("Error in retrieving MHA : ", error);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       error,

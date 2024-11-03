@@ -21,9 +21,13 @@ interface SerializedError {
 
 interface AiChatState {
   loading?: boolean;
+  reportLoading?: boolean;
+  report?: any;
   aiChat?: any;
   appErr?: string | undefined;
+  reportAppErr?: string | undefined;
   serverErr?: string | undefined;
+  reportServerErr?: string | undefined;
 }
 
 const initialState: AiChatState = {};
@@ -157,6 +161,69 @@ export const GetAllAiChatsAction = createAsyncThunk<
   }
 });
 
+export const getUsersMHAReport = createAsyncThunk<
+  any,
+  undefined,
+  { rejectValue: SerializedError }
+>("aiChat/get-analysis", async (_, { rejectWithValue, getState }) => {
+  const { users } = getState() as RootState;
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${users?.user?.token}`,
+    },
+  };
+  try {
+    const { data } = await axios.get<any>(
+      `${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/bard/get-analysis`,
+      config
+    );
+    return data.report;
+  } catch (error) {
+    if (!axios.isAxiosError(error)) {
+      throw error;
+    }
+    const axiosError = error as AxiosError<SerializedError>;
+    if (axiosError.response) {
+      return rejectWithValue(axiosError.response.data);
+    } else {
+      throw error;
+    }
+  }
+});
+
+export const generateMHReport = createAsyncThunk<
+  any,
+  undefined,
+  { rejectValue: SerializedError }
+>("aiChat/analysis", async (_, { rejectWithValue, getState }) => {
+  const { users } = getState() as RootState;
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${users?.user?.token}`,
+    },
+  };
+  try {
+    const { data } = await axios.post<any>(
+      `${import.meta.env.VITE_REACT_SERVER_URL}/api/v1/bard/analysis`,
+      {},
+      config
+    );
+    return data.report;
+  } catch (error) {
+    if (!axios.isAxiosError(error)) {
+      throw error;
+    }
+    const axiosError = error as AxiosError<SerializedError>;
+    if (axiosError.response) {
+      return rejectWithValue(axiosError.response.data);
+    } else {
+      throw error;
+    }
+  }
+});
+
 const aiChatSlice = createSlice({
   name: "aiChat",
   initialState,
@@ -232,6 +299,38 @@ const aiChatSlice = createSlice({
       state.loading = false;
       state.appErr = action.payload?.message;
       state.serverErr = action.error?.message;
+    });
+    builder.addCase(getUsersMHAReport.pending, (state) => {
+      state.reportLoading = true;
+      state.reportAppErr = undefined;
+      state.reportServerErr = undefined;
+    });
+    builder.addCase(getUsersMHAReport.fulfilled, (state, action) => {
+      state.reportLoading = false;
+      state.report = action.payload;
+      state.reportAppErr = undefined;
+      state.reportServerErr = undefined;
+    });
+    builder.addCase(getUsersMHAReport.rejected, (state, action) => {
+      state.reportLoading = false;
+      state.reportAppErr = action.payload?.message;
+      state.reportServerErr = action.error?.message;
+    });
+    builder.addCase(generateMHReport.pending, (state) => {
+      state.reportLoading = true;
+      state.reportAppErr = undefined;
+      state.reportServerErr = undefined;
+    });
+    builder.addCase(generateMHReport.fulfilled, (state, action) => {
+      state.reportLoading = false;
+      state.report = action.payload;
+      state.reportAppErr = undefined;
+      state.reportServerErr = undefined;
+    });
+    builder.addCase(generateMHReport.rejected, (state, action) => {
+      state.reportLoading = false;
+      state.reportAppErr = action.payload?.message;
+      state.reportServerErr = action.error?.message;
     });
   },
 });

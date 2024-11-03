@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import NewAIChat from "./components/Dashboard/AIChat/NewAIChat";
 import ContinueAIChat from "./components/Dashboard/AIChat/ContinueAIChat";
 import About from "./components/func-components/About";
+import Analysis from "./components/Dashboard/Analysis";
 import Pricing from "./components/func-components/Pricing";
 // import ComingSoon from "./components/func-components/ComingSoon";
 
@@ -41,8 +42,16 @@ const router = createBrowserRouter([
         Component: NewAIChat,
       },
       {
-        path: ":id",
+        path: "chat",
+        Component: NewAIChat,
+      },
+      {
+        path: "chat/:id",
         Component: ContinueAIChat,
+      },
+      {
+        path: "analysis",
+        Component: Analysis,
       },
     ],
   },

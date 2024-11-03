@@ -134,10 +134,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   return (
                     <React.Fragment>
                       <NavLink
-                        to="#"
+                        to="/dashboard"
                         className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                          (pathname === "/dashboard" ||
-                            pathname.includes("dashboard")) &&
+                          (pathname === "/dashboard/chat" ||
+                            pathname === "/dashboard") &&
                           "bg-graydark dark:bg-meta-4"
                         }`}
                         onClick={(e) => {
@@ -188,7 +188,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6 ">
                           <li>
                             <NavLink
-                              to="/dashboard"
+                              to="/dashboard/chat"
                               className="flex justify-center items-center gap-2"
                             >
                               <Button
@@ -223,7 +223,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                   className=" w-[80%] h-full overflow-hidden rounded-md"
                                 >
                                   <NavLink
-                                    to={`/dashboard/${chats._id}`}
+                                    to={`/dashboard/chat/${chats._id}`}
                                     className={({ isActive }) =>
                                       "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white " +
                                       (isActive && "!text-white bg-slate-600")
@@ -248,6 +248,82 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 }}
               </SidebarLinkGroup>
               {/* <!-- Menu Item Dashboard --> */}
+              <li>
+                <NavLink
+                  to="/dashboard/analysis"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    (pathname === "/analysis" ||
+                      pathname.includes("analysis")) &&
+                    "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <svg
+                    viewBox="0 0 1024 1024"
+                    fill="currentColor"
+                    height="1.4em"
+                    width="1.4em"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M135.3 373h753.1v493H135.3z" fill="#FFFFFF" />
+                    <path
+                      d="M880.5 365h16v16h-16zM864.8 381h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0H755v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16H708v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0H504v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16H457v16z m-31.4 0H410v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0H159v-16h15.7v16zM127.3 365h16v16h-16zM143.3 841.5h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.8h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16V710z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16V562h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4zM127.3 858h16v16h-16zM864.8 874h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0H755v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16H708v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0H504v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16H457v16z m-31.4 0H410v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.4 0h-15.7v-16h15.7v16z m-31.3 0h-15.7v-16h15.7v16z m-31.4 0H159v-16h15.7v16zM880.5 858h16v16h-16zM896.5 841.5h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.8h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16V710z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16V562h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z m0-32.9h-16v-16.4h16v16.4z"
+                      fill="#0A0408"
+                    />
+                    <path d="M192.7 440.7h645.2v454.9H192.7z" fill="#EBB866" />
+                    <path d="M71.9 864.5H952v83.9H71.9z" fill="#FFFFFF" />
+                    <path
+                      d="M959.9 956.4h-896v-99.9H960v99.9z m-880-16H944v-67.9H79.9v67.9z"
+                      fill="#0A0408"
+                    />
+                    <path d="M314.5 334.1h84.4v319.7h-84.4z" fill="#55B7A8" />
+                    <path
+                      d="M406.9 661.8H306.5V326.1h100.4v335.7z m-84.4-16h68.4V342.1h-68.4v303.7z"
+                      fill="#0A0408"
+                    />
+                    <path d="M475.3 145.7h84.4v508.1h-84.4z" fill="#DC444A" />
+                    <path
+                      d="M567.6 661.8H467.3V137.7h100.4v524.1z m-84.3-16h68.4V153.7h-68.4v492.1z"
+                      fill="#0A0408"
+                    />
+                    <path d="M636 241.8h84.4v412H636z" fill="#68A4D9" />
+                    <path
+                      d="M728.4 661.8H628v-428h100.4v428z m-84.4-16h68.4v-396H644v396z"
+                      fill="#0A0408"
+                    />
+                    <path d="M314.5 308.7h84.4v110.8h-84.4z" fill="#FFFFFF" />
+                    <path
+                      d="M406.9 427.5H306.5V300.7h100.4v126.8z m-84.4-16h68.4v-94.8h-68.4v94.8z"
+                      fill="#0A0408"
+                    />
+                    <path d="M475.3 104h84.4v110.8h-84.4z" fill="#FFFFFF" />
+                    <path
+                      d="M567.6 222.8H467.3V96h100.4v126.8z m-84.3-16h68.4V112h-68.4v94.8z"
+                      fill="#0A0408"
+                    />
+                    <path d="M636 223.3h84.4v110.8H636z" fill="#FFFFFF" />
+                    <path
+                      d="M728.4 342.1H628V215.3h100.4v126.8z m-84.4-16h68.4v-94.8H644v94.8z"
+                      fill="#0A0408"
+                    />
+                    <path
+                      d="M314.5 742.2h8v16h-8zM696.8 758.2h-15.6v-16h15.6v16z m-31.2 0H650v-16h15.6v16z m-31.2 0h-15.6v-16h15.6v16z m-31.2 0h-15.6v-16h15.6v16z m-31.2 0h-15.6v-16H572v16z m-31.2 0h-15.6v-16h15.6v16z m-31.1 0h-15.6v-16h15.6v16z m-31.2 0h-15.6v-16h15.6v16z m-31.2 0h-15.6v-16h15.6v16z m-31.2 0h-15.6v-16h15.6v16z m-31.2 0h-15.6v-16h15.6v16z m-31.2 0h-15.6v-16h15.6v16zM712.4 742.2h8v16h-8z"
+                      fill="#0A0408"
+                    />
+                    <path d="M109.9 347.6h50.9v50.9h-50.9z" fill="#DC444A" />
+                    <path
+                      d="M168.8 406.5h-66.9v-66.9h66.9v66.9z m-50.9-16h34.9v-34.9h-34.9v34.9z"
+                      fill="#0A0408"
+                    />
+                    <path d="M863.7 346.9h50.9v50.9h-50.9z" fill="#DC444A" />
+                    <path
+                      d="M922.6 405.7h-66.9v-66.9h66.9v66.9z m-50.9-16h34.9v-34.9h-34.9v34.9z"
+                      fill="#0A0408"
+                    />
+                  </svg>
+                  MHA Report
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/"
