@@ -24,7 +24,10 @@ const Hero = () => {
     >
       <div className="flex flex-row max-md::flex-col max-md:justify-start justify-between bg-gradient-to-t from-transparent to-[#F6FDFF] w-full items-start pt-10 h-100 px-10">
         <div>logo</div>
-        <div className="hidden md:flex flex-row gap-5 w-80 text-base text-slate-600 justify-between">
+        <div
+          className="hidden md:flex flex-row gap-10 w-80 text-slate-600 justify-center font-normal
+         text-lg"
+        >
           <a
             className={`hover:cursor-pointer hover:scale-105 hover:text-black`}
             href={`#about`}
@@ -55,7 +58,7 @@ const Hero = () => {
               </Button>
             </NavLink>
           ) : (
-            <SignUp styles="bg-[#008080] text-white w-[200px] mb-10">
+            <SignUp styles="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50">
               Try for Free
             </SignUp>
           )}
@@ -65,22 +68,38 @@ const Hero = () => {
       <div className="flex flex-row max-md::flex-col max-md:justify-start w-full items-center justify-center h-[75%] px-2">
         <div className="flex flex-col gap-10 items-center mb-30">
           <div className="lg:scale-125 border-2 border-[#F6FDFF] p-2 rounded-xl bg-gradient-to-tl from-transparent to-[#F6FDFF]">
-            Private. NO paywalls, free forever, Loved by 50k+ hoomans
-          </div>
-          <div className="lg:scale-[2] scale-150 flex flex-wrap gap-1 [text-shadow:1px_1px_1px_gray] font-medium">
-            <span className="italic">Everyone</span> deserves a better mental
-            health. and so do you!{" "}
-            <span className="scale-75 border-2 border-white px-1 rounded-xl bg-[#F6FDFF] ">
-              🫶
+            <span className="italic font-thin">
+              Private. NO paywalls, free forever, Loved by 50k+ hoomans
             </span>
           </div>
-          <div className="items-center h-auto w-auto scale-150">
-            <Button
-              variant="default"
-              className="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
-            >
-              Talk Now
-            </Button>
+          <div className="lg:scale-[2] scale-150 flex flex-col items-center gap-1 [text-shadow:1px_1px_1px_gray] font-medium">
+            <div>
+              <span className="italic">{`Everyone `}</span>
+              <span>deserves a better mental health.</span>
+            </div>
+            <div>
+              <span>And so do</span>
+              <span className="italic">{` you! `}</span>
+              <span className="scale-75 border-2 border-white rounded-md bg-[#F6FDFF] ">
+                🫶
+              </span>
+            </div>
+          </div>
+          <div className="items-center h-auto w-auto scale-150 mt-5">
+            {user ? (
+              <NavLink to={`/dashboard`}>
+                <Button
+                  variant="default"
+                  className="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
+                >
+                  Talk Now
+                </Button>
+              </NavLink>
+            ) : (
+              <SignUp styles="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50">
+                Try for Free
+              </SignUp>
+            )}
           </div>
         </div>
       </div>
