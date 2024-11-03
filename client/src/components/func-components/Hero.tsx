@@ -75,12 +75,14 @@ const Hero = () => {
             </span>
           </div>
           <div className="items-center h-auto w-auto scale-150">
-            <Button
-              variant="default"
-              className="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
-            >
-              Talk Now
-            </Button>
+            <NavLink to={`/dashboard`}>
+              <Button
+                variant="default"
+                className="bg-[#56C1FA] text-slate-700 w-[100px] border-[1px] border-slate-400 border-t-whiter rounded-full hover:scale-105 hover:bg-[#3ea5dd] hover:text-black hover:border-black duration-200 shadow-lg shadow-black/10 hover:shadow-black/50"
+              >
+                Talk Now
+              </Button>
+            </NavLink>
           </div>
         </div>
       </div>
