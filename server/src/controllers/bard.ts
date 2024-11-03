@@ -3,12 +3,14 @@ import { Request, Response } from "express";
 import { ObjectId } from "mongoose";
 import Bard from "../models/Bard";
 import User from "../models/User";
+import Report from "../models/Report";
 import GenerateMessage from "../../utils/bardapi";
 import { StatusCodes } from "http-status-codes";
 import { generateChatName } from "../../utils/generateChatname";
+import GenerateMHA from "../../utils/generateMHA";
 
 interface AuthRequest extends Request {
-  user?: { _id: ObjectId };
+  user?: { _id: ObjectId; AIChat: ObjectId[] };
 }
 
 export const NewBardChatCtrl = async (req: AuthRequest, res: Response) => {
@@ -95,6 +97,86 @@ export const GetAllChatsCtrl = async (req: AuthRequest, res: Response) => {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       message: "Something went wrong",
+    });
+  }
+};
+
+export const MentalHealthAnalysis = async (req: AuthRequest, res: Response) => {
+  try {
+    const { user } = req;
+    if (user && user.AIChat) {
+      const AllUserChats = (
+        await Promise.all(
+          user?.AIChat.map(async (chatId: ObjectId) => {
+            const foundChat = await Bard.findById(chatId);
+            return foundChat?.chat;
+          })
+        )
+      ).flat();
+      const chatsUpdateDates = await Promise.all(
+        user?.AIChat.map(async (chatId: ObjectId) => {
+          const foundChat = await Bard.findById(chatId);
+          return foundChat?.updatedAt;
+        })
+      );
+      if (AllUserChats.length === 0) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+          success: "false",
+          message: "You have no chats with Therapist AI !",
+        });
+      }
+      const cleanedChats = AllUserChats.map((chat) => {
+        return {
+          question: chat?.question,
+          answer: chat?.answer,
+        };
+      });
+      let MHAReport: {};
+      const prevAnalysisExists = await Report.findOne({ user: user?._id });
+      const mostRecentChatDate = chatsUpdateDates
+        .filter((date): date is Date => date !== undefined)
+        .reduce((latestDate, date) => {
+          return new Date(date) > new Date(latestDate) ? date : latestDate;
+        }, new Date(0));
+      if (
+        prevAnalysisExists &&
+        prevAnalysisExists.updatedAt > mostRecentChatDate
+      ) {
+        MHAReport = prevAnalysisExists;
+        return res.status(StatusCodes.OK).json({
+          success: true,
+          MHAReport,
+        });
+      } else {
+        try {
+          MHAReport = await GenerateMHA(cleanedChats);
+          prevAnalysisExists
+            ? await Report.findByIdAndUpdate(prevAnalysisExists._id, {
+                ...MHAReport,
+              })
+            : await Report.create({ ...MHAReport, user: user._id });
+        } catch (error) {
+          console.log("error generating report", error);
+          return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            success: false,
+            error,
+          });
+        }
+        return res.status(StatusCodes.OK).json({
+          success: true,
+          MHAReport,
+        });
+      }
+    }
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      success: true,
+      message: "no user found",
+    });
+  } catch (error) {
+    console.log("Error in mental health analysis : ", error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      error,
     });
   }
 };

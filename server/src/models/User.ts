@@ -2,17 +2,7 @@ import { Schema, model, Model, ObjectId } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
-
-interface IUser {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  role: "user" | "doctor" | "admin";
-  AIChat: ObjectId[];
-  passwordResetToken?: string;
-  passwordResetExpires?: Date;
-}
+import { IUser } from "../interfaces/UserInterface";
 
 interface IUserMethods {
   matchPassword: (enteredPassword: string) => Promise<boolean>;
