@@ -16,8 +16,8 @@ const LoveyDovey = ({ heading, description }: LoveyDoveyProps) => {
       </div>
       {/* write ups */}
       <div className="flex flex-col gap-5 items-center w-[80%]">
-        <h1 className="font-semibold text-xl scale-110">{heading}</h1>
-        <p className="font-medium text-lg">{description}</p>
+        <h1 className="font-medium text-2xl scale-110">{heading}</h1>
+        <p className="font-light text-lg text-slate-500">{description}</p>
       </div>
     </div>
   );
