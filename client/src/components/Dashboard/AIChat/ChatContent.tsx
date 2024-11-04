@@ -20,7 +20,7 @@ const ChatContent = ({ userInput }: ChatContentProps) => {
 
   useEffect(() => {
     if (!loading && aiChat?.data) {
-      navigate(`/dashboard/${aiChat.data._id}`);
+      navigate(`/dashboard/chat/${aiChat.data._id}`);
     }
   }, [aiChat, loading, navigate]);
 

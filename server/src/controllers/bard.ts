@@ -152,9 +152,11 @@ export const MentalHealthAnalysis = async (req: AuthRequest, res: Response) => {
         try {
           const normalMHAReport = await GenerateMHA(cleanedChats);
           MHAReport = prevAnalysisExists
-            ? await Report.findByIdAndUpdate(prevAnalysisExists._id, {
-                ...normalMHAReport,
-              })
+            ? await Report.findByIdAndUpdate(
+                prevAnalysisExists._id,
+                { ...normalMHAReport },
+                { new: true }
+              )
             : await Report.create({ ...normalMHAReport, user: user._id });
         } catch (error) {
           console.log("error generating report", error);
