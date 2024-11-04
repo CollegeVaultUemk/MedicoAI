@@ -34,7 +34,7 @@ const ChatHeader = () => {
         <p className={`mt-3 text-gray-600 dark:text-gray-300`}>
           Get comprehensive consultations from our AI chat bot SERENITY 🚀 !.
         </p>
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 md:flex justify-center xs:hidden">
           <ul className="inline-grid grid-cols-2 gap-x-10 gap-y-6 md:gap-x-16 pb-18">
             {Examples.map((example, idx) => (
               <li
