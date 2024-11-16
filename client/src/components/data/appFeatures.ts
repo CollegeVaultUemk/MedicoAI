@@ -7,7 +7,7 @@ export const aboutData = [
   {
     heading: "Pricing?",
     description:
-      "Health is a human right. And that shouldn’t come at cost. All features in TherapistAI are free. Forever.",
+      "Health is a human right. And that shouldn’t come at cost. All features in Serenity are free. Forever.",
   },
   {
     heading: "How is it free?",
