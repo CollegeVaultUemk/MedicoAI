@@ -55,3 +55,7 @@ npm install
 
 # Start the development server
 npm start
+```
+
+
+Feel free to reach out with feedback or contribute to the **Serenity** project to help others on their mental health journey. Together, we can make a difference!
