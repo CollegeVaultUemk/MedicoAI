@@ -104,6 +104,9 @@ export const GenerateMHA = async (
    - Provide the rating as a single number out of 10 (e.g., 1/10, 5/10) on the first line.
    - On the next line, speak directly to the user in a supportive tone, using plain sentences without semicolons or excessive punctuation (only commas if needed).
 
+   Guidelines:
+   - If the user hasn't showed any signs of coping mechanism in the chat history, assign a score of 0/10 and craft a gentle comment letting the user know that their chats don't indicate any significant coping challenges.
+
    Use the following metrics for analysis:
    1. Problem-solving approaches
    2.Adaptation to challenges
