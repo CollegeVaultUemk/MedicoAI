@@ -44,8 +44,11 @@ export const GenerateMHA = async (
    - Provide the rating as a single number out of 10 (e.g., 1/10, 5/10) on the first line.
    - On the next line, speak directly to the user in a supportive tone, using plain sentences without semicolons or excessive punctuation (only commas if needed).
 
+   Guidelines:
+   - If user has not said something that genuinely raises concerns about their anxiety in the chat history, assign a score of 0/10 and craft an encouraging comment to assure them that their chats don't indicate any significant anxiety.
+
    Use the following metrics for analysis:
-   1. Frequency of anxiety-related keywords
+   1.Frequency of anxiety-related keywords
    2.Discussion of worry or stress
    3.Physical symptom mentions
    4.Future-focused concerns
